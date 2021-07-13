@@ -14,6 +14,7 @@
  *  limitations under the License.
  *
  */
+/// @submodule uv
 #include "private.h"
 
 static uv_tty_t* luv_check_tty(lua_State* L, int index) {
@@ -22,6 +23,7 @@ static uv_tty_t* luv_check_tty(lua_State* L, int index) {
   return handle;
 }
 
+/// @function new_tty
 static int luv_new_tty(lua_State* L) {
   int readable, ret;
   uv_tty_t* handle;
@@ -39,6 +41,7 @@ static int luv_new_tty(lua_State* L) {
   return 1;
 }
 
+/// @function tty_set_mode
 static int luv_tty_set_mode(lua_State* L) {
   uv_tty_t* handle = luv_check_tty(L, 1);
   int mode = luaL_checkinteger(L, 2);
@@ -46,6 +49,7 @@ static int luv_tty_set_mode(lua_State* L) {
   return luv_result(L, ret);
 }
 
+/// @function tty_reset_mode
 static int luv_tty_reset_mode(lua_State* L) {
   int ret = uv_tty_reset_mode();
   return luv_result(L, ret);
@@ -62,6 +66,7 @@ static int luv_tty_get_winsize(lua_State* L) {
 }
 
 #if LUV_UV_VERSION_GEQ(1, 33, 0)
+/// @function tty_set_vterm_state
 int luv_tty_set_vterm_state(lua_State* L)
 {
   uv_tty_vtermstate_t state[] = {UV_TTY_SUPPORTED, UV_TTY_UNSUPPORTED};
@@ -71,6 +76,7 @@ int luv_tty_set_vterm_state(lua_State* L)
   return 0;
 }
 
+/// @function tty_get_vterm_state
 int luv_tty_get_vterm_state(lua_State* L)
 {
   uv_tty_vtermstate_t state;

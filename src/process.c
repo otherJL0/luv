@@ -14,9 +14,11 @@
  *  limitations under the License.
  *
  */
+/// @submodule uv
 #include "private.h"
 #include <math.h>
 
+/// @function disable_stdio_inheritance
 static int luv_disable_stdio_inheritance(lua_State* L) {
   (void)L;
   uv_disable_stdio_inheritance();
@@ -79,6 +81,7 @@ static int sparse_rawlen(lua_State* L, int tbl) {
   return len;
 }
 
+/// @function spawn
 static int luv_spawn(lua_State* L) {
   uv_process_t* handle;
   uv_process_options_t options;
@@ -309,6 +312,7 @@ static int luv_parse_signal(lua_State* L, int slot) {
   return SIGTERM;
 }
 
+/// @function process_kill
 static int luv_process_kill(lua_State* L) {
   uv_process_t* handle = luv_check_process(L, 1);
   int signum = luv_parse_signal(L, 2);
@@ -316,6 +320,7 @@ static int luv_process_kill(lua_State* L) {
   return luv_result(L, ret);
 }
 
+/// @function kill
 static int luv_kill(lua_State* L) {
   int pid = luaL_checkinteger(L, 1);
   int signum = luv_parse_signal(L, 2);
@@ -324,6 +329,7 @@ static int luv_kill(lua_State* L) {
 }
 
 #if LUV_UV_VERSION_GEQ(1, 19, 0)
+/// @function process_get_pid
 static int luv_process_get_pid(lua_State* L) {
   uv_process_t* handle = luv_check_process(L, 1);
   lua_pushinteger(L, uv_process_get_pid(handle));

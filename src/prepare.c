@@ -14,6 +14,7 @@
  *  limitations under the License.
  *
  */
+/// @submodule uv
 #include "private.h"
 
 static uv_prepare_t* luv_check_prepare(lua_State* L, int index) {
@@ -22,6 +23,7 @@ static uv_prepare_t* luv_check_prepare(lua_State* L, int index) {
   return handle;
 }
 
+/// @function new_prepare
 static int luv_new_prepare(lua_State* L) {
   luv_ctx_t* ctx = luv_context(L);
   uv_prepare_t* handle = (uv_prepare_t*)luv_newuserdata(L, sizeof(*handle));
@@ -40,6 +42,7 @@ static void luv_prepare_cb(uv_prepare_t* handle) {
   luv_call_callback(L, data, LUV_PREPARE, 0);
 }
 
+/// @function prepare_start
 static int luv_prepare_start(lua_State* L) {
   uv_prepare_t* handle = luv_check_prepare(L, 1);
   int ret;
@@ -48,6 +51,7 @@ static int luv_prepare_start(lua_State* L) {
   return luv_result(L, ret);
 }
 
+/// @function prepare_stop
 static int luv_prepare_stop(lua_State* L) {
   uv_prepare_t* handle = luv_check_prepare(L, 1);
   int ret = uv_prepare_stop(handle);

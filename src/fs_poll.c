@@ -15,6 +15,7 @@
  *
  */
 
+/// @submodule uv
 #include "luv.h"
 
 static uv_fs_poll_t* luv_check_fs_poll(lua_State* L, int index) {
@@ -23,6 +24,7 @@ static uv_fs_poll_t* luv_check_fs_poll(lua_State* L, int index) {
   return handle;
 }
 
+/// @function new_fs_poll
 static int luv_new_fs_poll(lua_State* L) {
   luv_ctx_t* ctx = luv_context(L);
   uv_fs_poll_t* handle = (uv_fs_poll_t*)luv_newuserdata(L, sizeof(*handle));
@@ -61,6 +63,7 @@ static void luv_fs_poll_cb(uv_fs_poll_t* handle, int status, const uv_stat_t* pr
   luv_call_callback(L, (luv_handle_t*)handle->data, LUV_FS_POLL, 3);
 }
 
+/// @function fs_poll_start
 static int luv_fs_poll_start(lua_State* L) {
   uv_fs_poll_t* handle = luv_check_fs_poll(L, 1);
   const char* path = luaL_checkstring(L, 2);
@@ -71,12 +74,14 @@ static int luv_fs_poll_start(lua_State* L) {
   return luv_result(L, ret);
 }
 
+/// @function fs_poll_stop
 static int luv_fs_poll_stop(lua_State* L) {
   uv_fs_poll_t* handle = luv_check_fs_poll(L, 1);
   int ret = uv_fs_poll_stop(handle);
   return luv_result(L, ret);
 }
 
+/// @function fs_poll_getpath
 static int luv_fs_poll_getpath(lua_State* L) {
   uv_fs_poll_t* handle = luv_check_fs_poll(L, 1);
   size_t len = 2*PATH_MAX;

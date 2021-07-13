@@ -14,6 +14,7 @@
  *  limitations under the License.
  *
  */
+/// @submodule uv
 #include "private.h"
 
 static uv_check_t* luv_check_check(lua_State* L, int index) {
@@ -22,6 +23,7 @@ static uv_check_t* luv_check_check(lua_State* L, int index) {
   return handle;
 }
 
+/// @function new_check
 static int luv_new_check(lua_State* L) {
   luv_ctx_t* ctx = luv_context(L);
   uv_check_t* handle = (uv_check_t*)luv_newuserdata(L, sizeof(*handle));
@@ -40,6 +42,7 @@ static void luv_check_cb(uv_check_t* handle) {
   luv_call_callback(L, data, LUV_CHECK, 0);
 }
 
+/// @function check_start
 static int luv_check_start(lua_State* L) {
   uv_check_t* handle = luv_check_check(L, 1);
   int ret;
@@ -48,6 +51,7 @@ static int luv_check_start(lua_State* L) {
   return luv_result(L, ret);
 }
 
+/// @function check_stop
 static int luv_check_stop(lua_State* L) {
   uv_check_t* handle = luv_check_check(L, 1);
   int ret = uv_check_stop(handle);

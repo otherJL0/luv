@@ -14,8 +14,10 @@
  *  limitations under the License.
  *
  */
+/// @submodule uv
 #include "private.h"
 
+/// @function loop_close
 static int luv_loop_close(lua_State* L) {
   int ret = uv_loop_close(luv_loop(L));
   if (ret < 0) return luv_error(L, ret);
@@ -29,6 +31,9 @@ static const char *const luv_runmodes[] = {
   "default", "once", "nowait", NULL
 };
 
+/// Runs the event loop. It will act differently depending on the specified mode:
+// @function run
+// @tparam[opt='default'] string mode
 static int luv_run(lua_State* L) {
   int mode = luaL_checkoption(L, 1, "default", luv_runmodes);
   luv_ctx_t* ctx = luv_context(L);
@@ -40,6 +45,7 @@ static int luv_run(lua_State* L) {
   return 1;
 }
 
+/// @function loop_mode
 static int luv_loop_mode(lua_State* L) {
   luv_ctx_t* ctx = luv_context(L);
   if (ctx->mode == -1) {
@@ -50,6 +56,7 @@ static int luv_loop_mode(lua_State* L) {
   return 1;
 }
 
+/// @function loop_alive
 static int luv_loop_alive(lua_State* L) {
   int ret = uv_loop_alive(luv_loop(L));
   if (ret < 0) return luv_error(L, ret);
@@ -57,11 +64,13 @@ static int luv_loop_alive(lua_State* L) {
   return 1;
 }
 
+/// @function stop
 static int luv_stop(lua_State* L) {
   uv_stop(luv_loop(L));
   return 0;
 }
 
+/// @function backend_fd
 static int luv_backend_fd(lua_State* L) {
   int ret = uv_backend_fd(luv_loop(L));
   // -1 is returned when there is no backend fd (like on Windows)
@@ -72,18 +81,21 @@ static int luv_backend_fd(lua_State* L) {
   return 1;
 }
 
+/// @function backend_timeout
 static int luv_backend_timeout(lua_State* L) {
   int ret = uv_backend_timeout(luv_loop(L));
   lua_pushinteger(L, ret);
   return 1;
 }
 
+/// @function now
 static int luv_now(lua_State* L) {
   uint64_t now = uv_now(luv_loop(L));
   lua_pushinteger(L, now);
   return 1;
 }
 
+/// @function update_time
 static int luv_update_time(lua_State* L) {
   uv_update_time(luv_loop(L));
   return 0;
@@ -102,6 +114,7 @@ static void luv_walk_cb(uv_handle_t* handle, void* arg) {
   data->ctx->pcall(L, 1, 0, 0);  // Call the function
 }
 
+/// @function walk
 static int luv_walk(lua_State* L) {
   luaL_checktype(L, 1, LUA_TFUNCTION);
   uv_walk(luv_loop(L), luv_walk_cb, L);
@@ -117,6 +130,7 @@ static const char *const luv_loop_configure_options[] = {
   NULL
 };
 
+/// @function loop_configure
 static int luv_loop_configure(lua_State* L) {
   uv_loop_t* loop = luv_loop(L);
   uv_loop_option option = 0;

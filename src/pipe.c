@@ -14,6 +14,7 @@
  *  limitations under the License.
  *
  */
+/// @submodule uv
 #include "private.h"
 
 static uv_pipe_t* luv_check_pipe(lua_State* L, int index) {
@@ -22,6 +23,7 @@ static uv_pipe_t* luv_check_pipe(lua_State* L, int index) {
   return handle;
 }
 
+/// @function new_pipe
 static int luv_new_pipe(lua_State* L) {
   uv_pipe_t* handle;
   int ipc, ret;
@@ -37,6 +39,7 @@ static int luv_new_pipe(lua_State* L) {
   return 1;
 }
 
+/// @function pipe_open
 static int luv_pipe_open(lua_State* L) {
   uv_pipe_t* handle = luv_check_pipe(L, 1);
   uv_file file = luaL_checkinteger(L, 2);
@@ -44,6 +47,7 @@ static int luv_pipe_open(lua_State* L) {
   return luv_result(L, ret);
 }
 
+/// @function pipe_bind
 static int luv_pipe_bind(lua_State* L) {
   uv_pipe_t* handle = luv_check_pipe(L, 1);
   const char* name = luaL_checkstring(L, 2);
@@ -51,6 +55,7 @@ static int luv_pipe_bind(lua_State* L) {
   return luv_result(L, ret);
 }
 
+/// @function pipe_connect
 static int luv_pipe_connect(lua_State* L) {
   luv_ctx_t* ctx = luv_context(L);
   uv_pipe_t* handle = luv_check_pipe(L, 1);
@@ -62,6 +67,7 @@ static int luv_pipe_connect(lua_State* L) {
   return 1;
 }
 
+/// @function pipe_getsockname
 static int luv_pipe_getsockname(lua_State* L) {
   uv_pipe_t* handle = luv_check_pipe(L, 1);
   size_t len = 2*PATH_MAX;
@@ -73,6 +79,7 @@ static int luv_pipe_getsockname(lua_State* L) {
 }
 
 #if LUV_UV_VERSION_GEQ(1, 3, 0)
+/// @function pipe_getpeername
 static int luv_pipe_getpeername(lua_State* L) {
   uv_pipe_t* handle = luv_check_pipe(L, 1);
   size_t len = 2*PATH_MAX;
@@ -84,6 +91,7 @@ static int luv_pipe_getpeername(lua_State* L) {
 }
 #endif
 
+/// @function pipe_pending_instances
 static int luv_pipe_pending_instances(lua_State* L) {
   uv_pipe_t* handle = luv_check_pipe(L, 1);
   int count = luaL_checkinteger(L, 2);
@@ -91,12 +99,14 @@ static int luv_pipe_pending_instances(lua_State* L) {
   return 0;
 }
 
+/// @function pipe_pending_count
 static int luv_pipe_pending_count(lua_State* L) {
   uv_pipe_t* handle = luv_check_pipe(L, 1);
   lua_pushinteger(L, uv_pipe_pending_count(handle));
   return 1;
 }
 
+/// @function pipe_pending_type
 static int luv_pipe_pending_type(lua_State* L) {
   uv_pipe_t* handle = luv_check_pipe(L, 1);
   uv_handle_type type = uv_pipe_pending_type(handle);
@@ -132,6 +142,7 @@ static int luv_pipe_chmod(lua_State* L) {
 #endif
 
 #if LUV_UV_VERSION_GEQ(1,41,0)
+/// @function pipe
 static int luv_pipe(lua_State* L) {
   int read_flags = 0, write_flags = 0;
   uv_file fds[2];

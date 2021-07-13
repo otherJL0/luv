@@ -14,6 +14,7 @@
  *  limitations under the License.
  *
  */
+/// @submodule uv
 #include "private.h"
 
 static uv_tcp_t* luv_check_tcp(lua_State* L, int index) {
@@ -22,6 +23,7 @@ static uv_tcp_t* luv_check_tcp(lua_State* L, int index) {
   return handle;
 }
 
+/// @function new_tcp
 static int luv_new_tcp(lua_State* L) {
   uv_tcp_t* handle;
   int ret;
@@ -60,6 +62,7 @@ static int luv_new_tcp(lua_State* L) {
   return 1;
 }
 
+/// @function tcp_open
 static int luv_tcp_open(lua_State* L) {
   uv_tcp_t* handle = luv_check_tcp(L, 1);
   uv_os_sock_t sock = luaL_checkinteger(L, 2);
@@ -67,6 +70,7 @@ static int luv_tcp_open(lua_State* L) {
   return luv_result(L, ret);
 }
 
+/// @function tcp_nodelay
 static int luv_tcp_nodelay(lua_State* L) {
   uv_tcp_t* handle = luv_check_tcp(L, 1);
   int ret, enable;
@@ -76,6 +80,7 @@ static int luv_tcp_nodelay(lua_State* L) {
   return luv_result(L, ret);
 }
 
+/// @function tcp_keepalive
 static int luv_tcp_keepalive(lua_State* L) {
   uv_tcp_t* handle = luv_check_tcp(L, 1);
   int ret, enable;
@@ -89,6 +94,7 @@ static int luv_tcp_keepalive(lua_State* L) {
   return luv_result(L, ret);
 }
 
+/// @function tcp_simultaneous_accepts
 static int luv_tcp_simultaneous_accepts(lua_State* L) {
   uv_tcp_t* handle = luv_check_tcp(L, 1);
   int ret, enable;
@@ -98,6 +104,7 @@ static int luv_tcp_simultaneous_accepts(lua_State* L) {
   return luv_result(L, ret);
 }
 
+/// @function tcp_bind
 static int luv_tcp_bind(lua_State* L) {
   uv_tcp_t* handle = luv_check_tcp(L, 1);
   const char* host = luaL_checkstring(L, 2);
@@ -140,6 +147,7 @@ static void parse_sockaddr(lua_State* L, struct sockaddr_storage* address) {
   lua_setfield(L, -2, "ip");
 }
 
+/// @function tcp_getsockname
 static int luv_tcp_getsockname(lua_State* L) {
   uv_tcp_t* handle = luv_check_tcp(L, 1);
   struct sockaddr_storage address;
@@ -150,6 +158,7 @@ static int luv_tcp_getsockname(lua_State* L) {
   return 1;
 }
 
+/// @function tcp_getpeername
 static int luv_tcp_getpeername(lua_State* L) {
   uv_tcp_t* handle = luv_check_tcp(L, 1);
   struct sockaddr_storage address;
@@ -170,12 +179,14 @@ static void luv_connect_cb(uv_connect_t* req, int status) {
 }
 
 // deprecated by luv_stream_get_write_queue_size
+/// @function write_queue_size
 static int luv_write_queue_size(lua_State* L) {
   uv_tcp_t* handle = luv_check_tcp(L, 1);
   lua_pushinteger(L, handle->write_queue_size);
   return 1;
 }
 
+/// @function tcp_connect
 static int luv_tcp_connect(lua_State* L) {
   uv_tcp_t* handle = luv_check_tcp(L, 1);
   const char* host = luaL_checkstring(L, 2);
@@ -211,6 +222,7 @@ static void luv_close_reset_cb(uv_handle_t* handle) {
   luv_unref_handle(L, data);
 }
 
+/// @function tcp_close_reset
 static int luv_tcp_close_reset(lua_State* L) {
   int ret;
   uv_tcp_t* handle = luv_check_tcp(L, 1);
@@ -223,6 +235,7 @@ static int luv_tcp_close_reset(lua_State* L) {
 #endif
 
 #if LUV_UV_VERSION_GEQ(1, 41, 0)
+/// @function socketpair
 static int luv_socketpair(lua_State* L) {
   int ret;
   int socktype = SOCK_STREAM;

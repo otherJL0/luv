@@ -14,6 +14,7 @@
  *  limitations under the License.
  *
  */
+/// @submodule uv
 #include "private.h"
 
 static uv_signal_t* luv_check_signal(lua_State* L, int index) {
@@ -22,6 +23,7 @@ static uv_signal_t* luv_check_signal(lua_State* L, int index) {
   return handle;
 }
 
+/// @function new_signal
 static int luv_new_signal(lua_State* L) {
   luv_ctx_t* ctx = luv_context(L);
   uv_signal_t* handle = (uv_signal_t*)luv_newuserdata(L, sizeof(*handle));
@@ -41,6 +43,7 @@ static void luv_signal_cb(uv_signal_t* handle, int signum) {
   luv_call_callback(L, data, LUV_SIGNAL, 1);
 }
 
+/// @function signal_start
 static int luv_signal_start(lua_State* L) {
   uv_signal_t* handle = luv_check_signal(L, 1);
   int signum, ret;
@@ -63,6 +66,7 @@ static int luv_signal_start(lua_State* L) {
 }
 
 #if LUV_UV_VERSION_GEQ(1, 12, 0)
+/// @function signal_start_oneshot
 static int luv_signal_start_oneshot(lua_State* L) {
   uv_signal_t* handle = luv_check_signal(L, 1);
   int signum, ret;
@@ -85,6 +89,7 @@ static int luv_signal_start_oneshot(lua_State* L) {
 }
 #endif
 
+/// @function signal_stop
 static int luv_signal_stop(lua_State* L) {
   uv_signal_t* handle = luv_check_signal(L, 1);
   int ret = uv_signal_stop(handle);

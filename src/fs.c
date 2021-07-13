@@ -15,6 +15,7 @@
  *
  */
 
+/// @submodule uv
 #include "private.h"
 
 static uv_fs_t* luv_check_fs(lua_State* L, int index) {
@@ -455,6 +456,7 @@ static void luv_fs_cb(uv_fs_t* req) {
   return nargs;                                           \
 }
 
+/// @function fs_close
 static int luv_fs_close(lua_State* L) {
   luv_ctx_t* ctx = luv_context(L);
   uv_file file = luaL_checkinteger(L, 1);
@@ -464,6 +466,7 @@ static int luv_fs_close(lua_State* L) {
   FS_CALL(close, req, file);
 }
 
+/// @function fs_open
 static int luv_fs_open(lua_State* L) {
   luv_ctx_t* ctx = luv_context(L);
   const char* path = luaL_checkstring(L, 1);
@@ -475,6 +478,7 @@ static int luv_fs_open(lua_State* L) {
   FS_CALL(open, req, path, flags, mode);
 }
 
+/// @function fs_read
 static int luv_fs_read(lua_State* L) {
   luv_ctx_t* ctx = luv_context(L);
   uv_file file = luaL_checkinteger(L, 1);
@@ -503,6 +507,7 @@ static int luv_fs_read(lua_State* L) {
   FS_CALL(read, req, file, &buf, 1, offset);
 }
 
+/// @function fs_unlink
 static int luv_fs_unlink(lua_State* L) {
   luv_ctx_t* ctx = luv_context(L);
   const char* path = luaL_checkstring(L, 1);
@@ -512,6 +517,7 @@ static int luv_fs_unlink(lua_State* L) {
   FS_CALL(unlink, req, path);
 }
 
+/// @function fs_write
 static int luv_fs_write(lua_State* L) {
   luv_ctx_t* ctx = luv_context(L);
   uv_file file = luaL_checkinteger(L, 1);
@@ -536,6 +542,7 @@ static int luv_fs_write(lua_State* L) {
   return nargs;
 }
 
+/// @function fs_mkdir
 static int luv_fs_mkdir(lua_State* L) {
   luv_ctx_t* ctx = luv_context(L);
   const char* path = luaL_checkstring(L, 1);
@@ -546,6 +553,7 @@ static int luv_fs_mkdir(lua_State* L) {
   FS_CALL(mkdir, req, path, mode);
 }
 
+/// @function fs_mkdtemp
 static int luv_fs_mkdtemp(lua_State* L) {
   luv_ctx_t* ctx = luv_context(L);
   const char* tpl = luaL_checkstring(L, 1);
@@ -556,6 +564,7 @@ static int luv_fs_mkdtemp(lua_State* L) {
 }
 
 #if LUV_UV_VERSION_GEQ(1, 34, 0)
+/// @function fs_mkstemp
 static int luv_fs_mkstemp(lua_State* L) {
   luv_ctx_t* ctx = luv_context(L);
   const char* tpl = luaL_checkstring(L, 1);
@@ -566,6 +575,7 @@ static int luv_fs_mkstemp(lua_State* L) {
 }
 #endif
 
+/// @function fs_rmdir
 static int luv_fs_rmdir(lua_State* L) {
   luv_ctx_t* ctx = luv_context(L);
   const char* path = luaL_checkstring(L, 1);
@@ -575,6 +585,7 @@ static int luv_fs_rmdir(lua_State* L) {
   FS_CALL(rmdir, req, path);
 }
 
+/// @function fs_scandir
 static int luv_fs_scandir(lua_State* L) {
   luv_ctx_t* ctx = luv_context(L);
   const char* path = luaL_checkstring(L, 1);
@@ -585,6 +596,7 @@ static int luv_fs_scandir(lua_State* L) {
   FS_CALL(scandir, req, path, flags);
 }
 
+/// @function fs_scandir_next
 static int luv_fs_scandir_next(lua_State* L) {
   uv_fs_t* req = luv_check_fs(L, 1);
   uv_dirent_t ent;
@@ -599,6 +611,7 @@ static int luv_fs_scandir_next(lua_State* L) {
   return luv_push_dirent(L, &ent, 0);
 }
 
+/// @function fs_stat
 static int luv_fs_stat(lua_State* L) {
   luv_ctx_t* ctx = luv_context(L);
   const char* path = luaL_checkstring(L, 1);
@@ -608,6 +621,7 @@ static int luv_fs_stat(lua_State* L) {
   FS_CALL(stat, req, path);
 }
 
+/// @function fs_fstat
 static int luv_fs_fstat(lua_State* L) {
   luv_ctx_t* ctx = luv_context(L);
   uv_file file = luaL_checkinteger(L, 1);
@@ -617,6 +631,7 @@ static int luv_fs_fstat(lua_State* L) {
   FS_CALL(fstat, req, file);
 }
 
+/// @function fs_lstat
 static int luv_fs_lstat(lua_State* L) {
   luv_ctx_t* ctx = luv_context(L);
   const char* path = luaL_checkstring(L, 1);
@@ -626,6 +641,7 @@ static int luv_fs_lstat(lua_State* L) {
   FS_CALL(lstat, req, path);
 }
 
+/// @function fs_rename
 static int luv_fs_rename(lua_State* L) {
   luv_ctx_t* ctx = luv_context(L);
   const char* path = luaL_checkstring(L, 1);
@@ -639,6 +655,7 @@ static int luv_fs_rename(lua_State* L) {
   FS_CALL(rename, req, path, new_path);
 }
 
+/// @function fs_fsync
 static int luv_fs_fsync(lua_State* L) {
   luv_ctx_t* ctx = luv_context(L);
   uv_file file = luaL_checkinteger(L, 1);
@@ -648,6 +665,7 @@ static int luv_fs_fsync(lua_State* L) {
   FS_CALL(fsync, req, file);
 }
 
+/// @function fs_fdatasync
 static int luv_fs_fdatasync(lua_State* L) {
   luv_ctx_t* ctx = luv_context(L);
   uv_file file = luaL_checkinteger(L, 1);
@@ -657,6 +675,7 @@ static int luv_fs_fdatasync(lua_State* L) {
   FS_CALL(fdatasync, req, file);
 }
 
+/// @function fs_ftruncate
 static int luv_fs_ftruncate(lua_State* L) {
   luv_ctx_t* ctx = luv_context(L);
   uv_file file = luaL_checkinteger(L, 1);
@@ -667,6 +686,7 @@ static int luv_fs_ftruncate(lua_State* L) {
   FS_CALL(ftruncate, req, file, offset);
 }
 
+/// @function fs_sendfile
 static int luv_fs_sendfile(lua_State* L) {
   luv_ctx_t* ctx = luv_context(L);
   uv_file out_fd = luaL_checkinteger(L, 1);
@@ -679,6 +699,7 @@ static int luv_fs_sendfile(lua_State* L) {
   FS_CALL(sendfile, req, out_fd, in_fd, in_offset, length);
 }
 
+/// @function fs_access
 static int luv_fs_access(lua_State* L) {
   luv_ctx_t* ctx = luv_context(L);
   const char* path = luaL_checkstring(L, 1);
@@ -689,6 +710,7 @@ static int luv_fs_access(lua_State* L) {
   FS_CALL(access, req, path, amode);
 }
 
+/// @function fs_chmod
 static int luv_fs_chmod(lua_State* L) {
   luv_ctx_t* ctx = luv_context(L);
   const char* path = luaL_checkstring(L, 1);
@@ -699,6 +721,7 @@ static int luv_fs_chmod(lua_State* L) {
   FS_CALL(chmod, req, path, mode);
 }
 
+/// @function fs_fchmod
 static int luv_fs_fchmod(lua_State* L) {
   luv_ctx_t* ctx = luv_context(L);
   uv_file file = luaL_checkinteger(L, 1);
@@ -709,6 +732,7 @@ static int luv_fs_fchmod(lua_State* L) {
   FS_CALL(fchmod, req, file, mode);
 }
 
+/// @function fs_utime
 static int luv_fs_utime(lua_State* L) {
   luv_ctx_t* ctx = luv_context(L);
   const char* path = luaL_checkstring(L, 1);
@@ -720,6 +744,7 @@ static int luv_fs_utime(lua_State* L) {
   FS_CALL(utime, req, path, atime, mtime);
 }
 
+/// @function fs_futime
 static int luv_fs_futime(lua_State* L) {
   luv_ctx_t* ctx = luv_context(L);
   uv_file file = luaL_checkinteger(L, 1);
@@ -732,6 +757,7 @@ static int luv_fs_futime(lua_State* L) {
 }
 
 #if LUV_UV_VERSION_GEQ(1, 36, 0)
+/// @function fs_lutime
 static int luv_fs_lutime(lua_State* L) {
   luv_ctx_t* ctx = luv_context(L);
   const char* path = luaL_checkstring(L, 1);
@@ -744,6 +770,7 @@ static int luv_fs_lutime(lua_State* L) {
 }
 #endif
 
+/// @function fs_link
 static int luv_fs_link(lua_State* L) {
   luv_ctx_t* ctx = luv_context(L);
   const char* path = luaL_checkstring(L, 1);
@@ -757,6 +784,7 @@ static int luv_fs_link(lua_State* L) {
   FS_CALL(link, req, path, new_path);
 }
 
+/// @function fs_symlink
 static int luv_fs_symlink(lua_State* L) {
   luv_ctx_t* ctx = luv_context(L);
   const char* path = luaL_checkstring(L, 1);
@@ -791,6 +819,7 @@ static int luv_fs_symlink(lua_State* L) {
   FS_CALL(symlink, req, path, new_path, flags);
 }
 
+/// @function fs_readlink
 static int luv_fs_readlink(lua_State* L) {
   luv_ctx_t* ctx = luv_context(L);
   const char* path = luaL_checkstring(L, 1);
@@ -801,6 +830,7 @@ static int luv_fs_readlink(lua_State* L) {
 }
 
 #if LUV_UV_VERSION_GEQ(1, 8, 0)
+/// @function fs_realpath
 static int luv_fs_realpath(lua_State* L) {
   luv_ctx_t* ctx = luv_context(L);
   const char* path = luaL_checkstring(L, 1);
@@ -811,6 +841,7 @@ static int luv_fs_realpath(lua_State* L) {
 }
 #endif
 
+/// @function fs_chown
 static int luv_fs_chown(lua_State* L) {
   luv_ctx_t* ctx = luv_context(L);
   const char* path = luaL_checkstring(L, 1);
@@ -822,6 +853,7 @@ static int luv_fs_chown(lua_State* L) {
   FS_CALL(chown, req, path, uid, gid);
 }
 
+/// @function fs_fchown
 static int luv_fs_fchown(lua_State* L) {
   luv_ctx_t* ctx = luv_context(L);
   uv_file file = luaL_checkinteger(L, 1);
@@ -834,6 +866,7 @@ static int luv_fs_fchown(lua_State* L) {
 }
 
 #if LUV_UV_VERSION_GEQ(1, 21, 0)
+/// @function fs_lchown
 static int luv_fs_lchown(lua_State* L) {
   luv_ctx_t* ctx = luv_context(L);
   const char* path = luaL_checkstring(L, 1);
@@ -893,6 +926,7 @@ static uv_dir_t* luv_check_dir(lua_State* L, int idx) {
   return dir;
 }
 
+/// @function fs_opendir
 static int luv_fs_opendir(lua_State* L) {
   luv_ctx_t* ctx = luv_context(L);
   const char* path = luaL_checkstring(L, 1);
@@ -908,6 +942,7 @@ static int luv_fs_opendir(lua_State* L) {
   FS_CALL(opendir, req, path);
 }
 
+/// @function fs_readdir
 static int luv_fs_readdir(lua_State* L) {
   luv_ctx_t* ctx = luv_context(L);
   uv_fs_t *req;
@@ -919,6 +954,7 @@ static int luv_fs_readdir(lua_State* L) {
   FS_CALL(readdir, req, dir);
 }
 
+/// @function fs_closedir
 static int luv_fs_closedir(lua_State* L) {
   luv_ctx_t* ctx = luv_context(L);
   uv_dir_t* dir = luv_check_dir(L, 1);
@@ -958,6 +994,7 @@ static int luv_fs_dir_gc(lua_State* L) {
 #endif
 
 #if LUV_UV_VERSION_GEQ(1, 31, 0)
+/// @function fs_statfs
 static int luv_fs_statfs(lua_State* L) {
   luv_ctx_t* ctx = luv_context(L);
   const char* path = luaL_checkstring(L, 1);

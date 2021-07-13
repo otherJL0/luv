@@ -14,6 +14,7 @@
  *  limitations under the License.
  *
  */
+/// @submodule uv
 #include "private.h"
 
 static uv_poll_t* luv_check_poll(lua_State* L, int index) {
@@ -22,6 +23,7 @@ static uv_poll_t* luv_check_poll(lua_State* L, int index) {
   return handle;
 }
 
+/// @function new_poll
 static int luv_new_poll(lua_State* L) {
   luv_ctx_t* ctx = luv_context(L);
   int fd = luaL_checkinteger(L, 1);
@@ -35,6 +37,7 @@ static int luv_new_poll(lua_State* L) {
   return 1;
 }
 
+/// @function new_socket_poll
 static int luv_new_socket_poll(lua_State* L) {
   luv_ctx_t* ctx = luv_context(L);
   int fd = luaL_checkinteger(L, 1);
@@ -99,6 +102,7 @@ static void luv_poll_cb(uv_poll_t* handle, int status, int events) {
   luv_call_callback(L, data, LUV_POLL, 2);
 }
 
+/// @function poll_start
 static int luv_poll_start(lua_State* L) {
   uv_poll_t* handle = luv_check_poll(L, 1);
   int events, ret;
@@ -129,6 +133,7 @@ static int luv_poll_start(lua_State* L) {
   return luv_result(L, ret);
 }
 
+/// @function poll_stop
 static int luv_poll_stop(lua_State* L) {
   uv_poll_t* handle = luv_check_poll(L, 1);
   int ret = uv_poll_stop(handle);

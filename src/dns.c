@@ -15,6 +15,7 @@
  *
  */
 
+/// @submodule uv
 #include "private.h"
 #ifndef WIN32
 #include <netdb.h>
@@ -81,6 +82,7 @@ static void luv_getaddrinfo_cb(uv_getaddrinfo_t* req, int status, struct addrinf
 }
 
 
+/// @function getaddrinfo
 static int luv_getaddrinfo(lua_State* L) {
   uv_getaddrinfo_t* req;
   const char* node;
@@ -233,6 +235,7 @@ static void luv_getnameinfo_cb(uv_getnameinfo_t* req, int status, const char* ho
   req->data = NULL;
 }
 
+/// @function getnameinfo
 static int luv_getnameinfo(lua_State* L) {
   uv_getnameinfo_t* req;
   struct sockaddr_storage addr;

@@ -14,6 +14,7 @@
  *  limitations under the License.
  *
  */
+/// @submodule uv
 #include "private.h"
 
 static uv_async_t* luv_check_async(lua_State* L, int index) {
@@ -30,6 +31,7 @@ static void luv_async_cb(uv_async_t* handle) {
   luv_thread_arg_clear(L, (luv_thread_arg_t*)data->extra, LUVF_THREAD_SIDE_MAIN);
 }
 
+/// @function new_async
 static int luv_new_async(lua_State* L) {
   uv_async_t* handle;
   luv_handle_t* data;
@@ -51,6 +53,7 @@ static int luv_new_async(lua_State* L) {
   return 1;
 }
 
+/// @function async_send
 static int luv_async_send(lua_State* L) {
   int ret;
   uv_async_t* handle = luv_check_async(L, 1);

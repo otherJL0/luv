@@ -14,6 +14,7 @@
 *  limitations under the License.
 *
 */
+/// @submodule uv
 #include "private.h"
 
 typedef struct {
@@ -288,6 +289,7 @@ static void luv_thread_cb(void* varg) {
   release_vm_cb(L);
 }
 
+/// @function new_thread
 static int luv_new_thread(lua_State* L) {
   int ret;
   size_t len;
@@ -343,6 +345,7 @@ static int luv_new_thread(lua_State* L) {
   return 1;
 }
 
+/// @function thread_join
 static int luv_thread_join(lua_State* L) {
   luv_thread_t* tid = luv_check_thread(L, 1);
   int ret = uv_thread_join(&tid->handle);
@@ -351,6 +354,7 @@ static int luv_thread_join(lua_State* L) {
   return 1;
 }
 
+/// @function thread_self
 static int luv_thread_self(lua_State* L)
 {
   luv_thread_t* thread;
@@ -363,6 +367,7 @@ static int luv_thread_self(lua_State* L)
   return 1;
 }
 
+/// @function thread_equal
 static int luv_thread_equal(lua_State* L) {
   luv_thread_t* t1 = luv_check_thread(L, 1);
   luv_thread_t* t2 = luv_check_thread(L, 2);

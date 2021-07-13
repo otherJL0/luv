@@ -15,6 +15,7 @@
  *
  */
 
+/// @submodule uv
 #include "private.h"
 
 static uv_fs_event_t* luv_check_fs_event(lua_State* L, int index) {
@@ -23,6 +24,7 @@ static uv_fs_event_t* luv_check_fs_event(lua_State* L, int index) {
   return handle;
 }
 
+/// @function new_fs_event
 static int luv_new_fs_event(lua_State* L) {
   luv_ctx_t* ctx = luv_context(L);
   uv_fs_event_t* handle = (uv_fs_event_t*)luv_newuserdata(L, sizeof(*handle));
@@ -59,6 +61,7 @@ static void luv_fs_event_cb(uv_fs_event_t* handle, const char* filename, int eve
   luv_call_callback(L, (luv_handle_t*)handle->data, LUV_FS_EVENT, 3);
 }
 
+/// @function fs_event_start
 static int luv_fs_event_start(lua_State* L) {
   uv_fs_event_t* handle = luv_check_fs_event(L, 1);
   const char* path = luaL_checkstring(L, 2);
@@ -78,12 +81,14 @@ static int luv_fs_event_start(lua_State* L) {
   return luv_result(L, ret);
 }
 
+/// @function fs_event_stop
 static int luv_fs_event_stop(lua_State* L) {
   uv_fs_event_t* handle = luv_check_fs_event(L, 1);
   int ret = uv_fs_event_stop(handle);
   return luv_result(L, ret);
 }
 
+/// @function fs_event_getpath
 static int luv_fs_event_getpath(lua_State* L) {
   uv_fs_event_t* handle = luv_check_fs_event(L, 1);
   size_t len = 2*PATH_MAX;

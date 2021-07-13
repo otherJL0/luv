@@ -1,0 +1,4766 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>Reference</title>
+    <link rel="stylesheet" href="ldoc.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>Luv</h1>
+
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#loop_Functions">loop Functions</a></li>
+<li><a href="#req_Functions">req Functions</a></li>
+<li><a href="#handle_Functions">handle Functions</a></li>
+<li><a href="#timer_Functions">timer Functions</a></li>
+<li><a href="#prepare_Functions">prepare Functions</a></li>
+<li><a href="#check_Functions">check Functions</a></li>
+<li><a href="#idle_Functions">idle Functions</a></li>
+<li><a href="#async_Functions">async Functions</a></li>
+<li><a href="#poll_Functions">poll Functions</a></li>
+<li><a href="#signal_Functions">signal Functions</a></li>
+<li><a href="#process_Functions">process Functions</a></li>
+<li><a href="#stream_Functions">stream Functions</a></li>
+<li><a href="#tcp_Functions">tcp Functions</a></li>
+<li><a href="#pipe_Functions">pipe Functions</a></li>
+<li><a href="#tty_Functions">tty Functions</a></li>
+<li><a href="#udp_Functions">udp Functions</a></li>
+<li><a href="#fs_event_Functions">fs_event Functions</a></li>
+<li><a href="#fs_poll_Functions">fs_poll Functions</a></li>
+<li><a href="#fs_Functions">fs Functions</a></li>
+<li><a href="#dns_Functions">dns Functions</a></li>
+<li><a href="#misc_Functions">misc Functions</a></li>
+<li><a href="#thread_Functions">thread Functions</a></li>
+<li><a href="#util_Functions">util Functions</a></li>
+<li><a href="#metrics_Functions">metrics Functions</a></li>
+</ul>
+
+
+<h2>Modules</h2>
+<ul class="nowrap">
+  <li><strong>uv</strong></li>
+</ul>
+<h2>Topics</h2>
+<ul class="">
+  <li><a href="topics/README.md.html">README</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Module <code>uv</code></h1>
+<p>luv library</p>
+<p>
+
+</p>
+
+
+<h2><a href="#loop_Functions">loop Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#loop_close">loop_close ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#run">run ([mode='default'])</a></td>
+	<td class="summary">Runs the event loop.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#loop_mode">loop_mode ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#loop_alive">loop_alive ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#stop">stop ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#backend_fd">backend_fd ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#backend_timeout">backend_timeout ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#now">now ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#update_time">update_time ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#walk">walk ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#loop_configure">loop_configure ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+</table>
+<h2><a href="#req_Functions">req Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#cancel">cancel ()</a></td>
+	<td class="summary">Metamethod to allow storing anything in the userdata's environment</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#req_get_type">req_get_type ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+</table>
+<h2><a href="#handle_Functions">handle Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#is_active">is_active ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#is_closing">is_closing ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#close">close ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#ref">ref ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#unref">unref ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#has_ref">has_ref ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#send_buffer_size">send_buffer_size ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#recv_buffer_size">recv_buffer_size ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#fileno">fileno ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#handle_get_type">handle_get_type ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+</table>
+<h2><a href="#timer_Functions">timer Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#new_timer">new_timer ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#timer_start">timer_start ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#timer_stop">timer_stop ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#timer_again">timer_again ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#timer_set_repeat">timer_set_repeat ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#timer_get_repeat">timer_get_repeat ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#timer_get_due_in">timer_get_due_in ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+</table>
+<h2><a href="#prepare_Functions">prepare Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#new_prepare">new_prepare ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#prepare_start">prepare_start ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#prepare_stop">prepare_stop ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+</table>
+<h2><a href="#check_Functions">check Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#new_check">new_check ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#check_start">check_start ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#check_stop">check_stop ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+</table>
+<h2><a href="#idle_Functions">idle Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#new_idle">new_idle ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#idle_start">idle_start ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#idle_stop">idle_stop ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+</table>
+<h2><a href="#async_Functions">async Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#new_async">new_async ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#async_send">async_send ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+</table>
+<h2><a href="#poll_Functions">poll Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#new_poll">new_poll ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#new_socket_poll">new_socket_poll ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#poll_start">poll_start ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#poll_stop">poll_stop ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+</table>
+<h2><a href="#signal_Functions">signal Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#new_signal">new_signal ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#signal_start">signal_start ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#signal_start_oneshot">signal_start_oneshot ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#signal_stop">signal_stop ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+</table>
+<h2><a href="#process_Functions">process Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#disable_stdio_inheritance">disable_stdio_inheritance ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#spawn">spawn ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#process_kill">process_kill ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#kill">kill ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#process_get_pid">process_get_pid ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+</table>
+<h2><a href="#stream_Functions">stream Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#shutdown">shutdown ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#listen">listen ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#accept">accept ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#read_start">read_start ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#read_stop">read_stop ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#write">write ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#write2">write2 ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#try_write">try_write ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#is_readable">is_readable ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#stream_set_blocking">stream_set_blocking ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#stream_get_write_queue_size">stream_get_write_queue_size ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+</table>
+<h2><a href="#tcp_Functions">tcp Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#new_tcp">new_tcp ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#tcp_open">tcp_open ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#tcp_nodelay">tcp_nodelay ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#tcp_keepalive">tcp_keepalive ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#tcp_simultaneous_accepts">tcp_simultaneous_accepts ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#tcp_bind">tcp_bind ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#tcp_getsockname">tcp_getsockname ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#tcp_getpeername">tcp_getpeername ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#tcp_connect">tcp_connect ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#tcp_close_reset">tcp_close_reset ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#socketpair">socketpair ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+</table>
+<h2><a href="#pipe_Functions">pipe Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#new_pipe">new_pipe ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#pipe_open">pipe_open ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#pipe_bind">pipe_bind ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#pipe_connect">pipe_connect ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#pipe_getsockname">pipe_getsockname ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#pipe_getpeername">pipe_getpeername ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#pipe_pending_instances">pipe_pending_instances ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#pipe_pending_count">pipe_pending_count ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#pipe_pending_type">pipe_pending_type ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#pipe">pipe ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+</table>
+<h2><a href="#tty_Functions">tty Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#new_tty">new_tty ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#tty_set_mode">tty_set_mode ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#tty_reset_mode">tty_reset_mode ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#tty_set_vterm_state">tty_set_vterm_state ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#tty_get_vterm_state">tty_get_vterm_state ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+</table>
+<h2><a href="#udp_Functions">udp Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#new_udp">new_udp ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#udp_get_send_queue_size">udp_get_send_queue_size ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#udp_get_send_queue_count">udp_get_send_queue_count ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#udp_open">udp_open ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#udp_bind">udp_bind ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#udp_getsockname">udp_getsockname ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#udp_set_membership">udp_set_membership ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#udp_set_source_membership">udp_set_source_membership ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#udp_set_multicast_loop">udp_set_multicast_loop ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#udp_set_multicast_ttl">udp_set_multicast_ttl ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#udp_set_multicast_interface">udp_set_multicast_interface ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#udp_set_broadcast">udp_set_broadcast ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#udp_set_ttl">udp_set_ttl ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#udp_send">udp_send ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#udp_try_send">udp_try_send ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#udp_recv_start">udp_recv_start ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#udp_recv_stop">udp_recv_stop ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#udp_connect">udp_connect ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#udp_getpeername">udp_getpeername ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+</table>
+<h2><a href="#fs_event_Functions">fs_event Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#new_fs_event">new_fs_event ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#fs_event_start">fs_event_start ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#fs_event_stop">fs_event_stop ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#fs_event_getpath">fs_event_getpath ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+</table>
+<h2><a href="#fs_poll_Functions">fs_poll Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#new_fs_poll">new_fs_poll ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#fs_poll_start">fs_poll_start ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#fs_poll_stop">fs_poll_stop ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#fs_poll_getpath">fs_poll_getpath ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+</table>
+<h2><a href="#fs_Functions">fs Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#fs_close">fs_close ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#fs_open">fs_open ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#fs_read">fs_read ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#fs_unlink">fs_unlink ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#fs_write">fs_write ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#fs_mkdir">fs_mkdir ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#fs_mkdtemp">fs_mkdtemp ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#fs_mkstemp">fs_mkstemp ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#fs_rmdir">fs_rmdir ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#fs_scandir">fs_scandir ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#fs_scandir_next">fs_scandir_next ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#fs_stat">fs_stat ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#fs_fstat">fs_fstat ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#fs_lstat">fs_lstat ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#fs_rename">fs_rename ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#fs_fsync">fs_fsync ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#fs_fdatasync">fs_fdatasync ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#fs_ftruncate">fs_ftruncate ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#fs_sendfile">fs_sendfile ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#fs_access">fs_access ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#fs_chmod">fs_chmod ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#fs_fchmod">fs_fchmod ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#fs_utime">fs_utime ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#fs_futime">fs_futime ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#fs_lutime">fs_lutime ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#fs_link">fs_link ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#fs_symlink">fs_symlink ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#fs_readlink">fs_readlink ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#fs_realpath">fs_realpath ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#fs_chown">fs_chown ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#fs_fchown">fs_fchown ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#fs_lchown">fs_lchown ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#fs_opendir">fs_opendir ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#fs_readdir">fs_readdir ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#fs_closedir">fs_closedir ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#fs_statfs">fs_statfs ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+</table>
+<h2><a href="#dns_Functions">dns Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#getaddrinfo">getaddrinfo ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#getnameinfo">getnameinfo ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+</table>
+<h2><a href="#misc_Functions">misc Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#guess_handle">guess_handle ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#version">version ()</a></td>
+	<td class="summary">Returns the libuv version packed into a single integer.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#version_string">version_string ()</a></td>
+	<td class="summary">Returns the libuv version number as a string.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#get_process_title">get_process_title ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#set_process_title">set_process_title ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#resident_set_memory">resident_set_memory ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#uptime">uptime ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#getrusage">getrusage ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#cpu_info">cpu_info ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#interface_addresses">interface_addresses ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#loadavg">loadavg ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#exepath">exepath ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#cwd">cwd ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#chdir">chdir ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#os_tmpdir">os_tmpdir ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#os_homedir">os_homedir ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#os_get_passwd">os_get_passwd ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#get_constrained_memory">get_constrained_memory ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#get_total_memory">get_total_memory ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#get_free_memory">get_free_memory ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#hrtime">hrtime ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#getpid">getpid ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#getuid">getuid ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#getgid">getgid ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#setuid">setuid ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#setgid">setgid ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#print_all_handles">print_all_handles ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#print_active_handles">print_active_handles ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#os_getenv">os_getenv ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#os_setenv">os_setenv ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#os_unsetenv">os_unsetenv ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#os_gethostname">os_gethostname ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#if_indextoname">if_indextoname ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#if_indextoiid">if_indextoiid ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#os_getppid">os_getppid ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#os_getpriority">os_getpriority ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#os_setpriority">os_setpriority ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#os_uname">os_uname ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#gettimeofday">gettimeofday ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#os_environ">os_environ ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#sleep">sleep ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#random">random ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+</table>
+<h2><a href="#thread_Functions">thread Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#new_thread">new_thread ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#thread_join">thread_join ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#thread_self">thread_self ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#thread_equal">thread_equal ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+</table>
+<h2><a href="#util_Functions">util Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#translate_sys_error">translate_sys_error ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+</table>
+<h2><a href="#metrics_Functions">metrics Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#metrics_idle_time">metrics_idle_time ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2 class="section-header "><a name="loop_Functions"></a>loop Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "loop_close"></a>
+    <strong>loop_close ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "run"></a>
+    <strong>run ([mode='default'])</strong>
+    </dt>
+    <dd>
+    Runs the event loop.  It will act differently depending on the specified mode:
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">mode</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+
+
+
+         (<em>default</em> 'default')
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "loop_mode"></a>
+    <strong>loop_mode ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "loop_alive"></a>
+    <strong>loop_alive ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "stop"></a>
+    <strong>stop ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "backend_fd"></a>
+    <strong>backend_fd ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "backend_timeout"></a>
+    <strong>backend_timeout ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "now"></a>
+    <strong>now ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "update_time"></a>
+    <strong>update_time ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "walk"></a>
+    <strong>walk ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "loop_configure"></a>
+    <strong>loop_configure ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="req_Functions"></a>req Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "cancel"></a>
+    <strong>cancel ()</strong>
+    </dt>
+    <dd>
+    Metamethod to allow storing anything in the userdata's environment
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "req_get_type"></a>
+    <strong>req_get_type ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="handle_Functions"></a>handle Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "is_active"></a>
+    <strong>is_active ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "is_closing"></a>
+    <strong>is_closing ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "close"></a>
+    <strong>close ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "ref"></a>
+    <strong>ref ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "unref"></a>
+    <strong>unref ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "has_ref"></a>
+    <strong>has_ref ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "send_buffer_size"></a>
+    <strong>send_buffer_size ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "recv_buffer_size"></a>
+    <strong>recv_buffer_size ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fileno"></a>
+    <strong>fileno ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "handle_get_type"></a>
+    <strong>handle_get_type ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="timer_Functions"></a>timer Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "new_timer"></a>
+    <strong>new_timer ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "timer_start"></a>
+    <strong>timer_start ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "timer_stop"></a>
+    <strong>timer_stop ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "timer_again"></a>
+    <strong>timer_again ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "timer_set_repeat"></a>
+    <strong>timer_set_repeat ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "timer_get_repeat"></a>
+    <strong>timer_get_repeat ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "timer_get_due_in"></a>
+    <strong>timer_get_due_in ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="prepare_Functions"></a>prepare Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "new_prepare"></a>
+    <strong>new_prepare ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "prepare_start"></a>
+    <strong>prepare_start ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "prepare_stop"></a>
+    <strong>prepare_stop ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="check_Functions"></a>check Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "new_check"></a>
+    <strong>new_check ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "check_start"></a>
+    <strong>check_start ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "check_stop"></a>
+    <strong>check_stop ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="idle_Functions"></a>idle Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "new_idle"></a>
+    <strong>new_idle ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "idle_start"></a>
+    <strong>idle_start ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "idle_stop"></a>
+    <strong>idle_stop ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="async_Functions"></a>async Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "new_async"></a>
+    <strong>new_async ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "async_send"></a>
+    <strong>async_send ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="poll_Functions"></a>poll Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "new_poll"></a>
+    <strong>new_poll ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "new_socket_poll"></a>
+    <strong>new_socket_poll ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "poll_start"></a>
+    <strong>poll_start ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "poll_stop"></a>
+    <strong>poll_stop ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="signal_Functions"></a>signal Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "new_signal"></a>
+    <strong>new_signal ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "signal_start"></a>
+    <strong>signal_start ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "signal_start_oneshot"></a>
+    <strong>signal_start_oneshot ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "signal_stop"></a>
+    <strong>signal_stop ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="process_Functions"></a>process Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "disable_stdio_inheritance"></a>
+    <strong>disable_stdio_inheritance ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "spawn"></a>
+    <strong>spawn ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "process_kill"></a>
+    <strong>process_kill ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "kill"></a>
+    <strong>kill ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "process_get_pid"></a>
+    <strong>process_get_pid ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="stream_Functions"></a>stream Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "shutdown"></a>
+    <strong>shutdown ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "listen"></a>
+    <strong>listen ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "accept"></a>
+    <strong>accept ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "read_start"></a>
+    <strong>read_start ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "read_stop"></a>
+    <strong>read_stop ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "write"></a>
+    <strong>write ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "write2"></a>
+    <strong>write2 ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "try_write"></a>
+    <strong>try_write ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "is_readable"></a>
+    <strong>is_readable ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "stream_set_blocking"></a>
+    <strong>stream_set_blocking ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "stream_get_write_queue_size"></a>
+    <strong>stream_get_write_queue_size ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="tcp_Functions"></a>tcp Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "new_tcp"></a>
+    <strong>new_tcp ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "tcp_open"></a>
+    <strong>tcp_open ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "tcp_nodelay"></a>
+    <strong>tcp_nodelay ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "tcp_keepalive"></a>
+    <strong>tcp_keepalive ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "tcp_simultaneous_accepts"></a>
+    <strong>tcp_simultaneous_accepts ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "tcp_bind"></a>
+    <strong>tcp_bind ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "tcp_getsockname"></a>
+    <strong>tcp_getsockname ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "tcp_getpeername"></a>
+    <strong>tcp_getpeername ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "tcp_connect"></a>
+    <strong>tcp_connect ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "tcp_close_reset"></a>
+    <strong>tcp_close_reset ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "socketpair"></a>
+    <strong>socketpair ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="pipe_Functions"></a>pipe Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "new_pipe"></a>
+    <strong>new_pipe ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "pipe_open"></a>
+    <strong>pipe_open ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "pipe_bind"></a>
+    <strong>pipe_bind ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "pipe_connect"></a>
+    <strong>pipe_connect ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "pipe_getsockname"></a>
+    <strong>pipe_getsockname ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "pipe_getpeername"></a>
+    <strong>pipe_getpeername ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "pipe_pending_instances"></a>
+    <strong>pipe_pending_instances ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "pipe_pending_count"></a>
+    <strong>pipe_pending_count ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "pipe_pending_type"></a>
+    <strong>pipe_pending_type ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "pipe"></a>
+    <strong>pipe ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="tty_Functions"></a>tty Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "new_tty"></a>
+    <strong>new_tty ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "tty_set_mode"></a>
+    <strong>tty_set_mode ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "tty_reset_mode"></a>
+    <strong>tty_reset_mode ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "tty_set_vterm_state"></a>
+    <strong>tty_set_vterm_state ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "tty_get_vterm_state"></a>
+    <strong>tty_get_vterm_state ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="udp_Functions"></a>udp Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "new_udp"></a>
+    <strong>new_udp ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "udp_get_send_queue_size"></a>
+    <strong>udp_get_send_queue_size ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "udp_get_send_queue_count"></a>
+    <strong>udp_get_send_queue_count ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "udp_open"></a>
+    <strong>udp_open ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "udp_bind"></a>
+    <strong>udp_bind ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "udp_getsockname"></a>
+    <strong>udp_getsockname ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "udp_set_membership"></a>
+    <strong>udp_set_membership ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "udp_set_source_membership"></a>
+    <strong>udp_set_source_membership ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "udp_set_multicast_loop"></a>
+    <strong>udp_set_multicast_loop ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "udp_set_multicast_ttl"></a>
+    <strong>udp_set_multicast_ttl ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "udp_set_multicast_interface"></a>
+    <strong>udp_set_multicast_interface ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "udp_set_broadcast"></a>
+    <strong>udp_set_broadcast ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "udp_set_ttl"></a>
+    <strong>udp_set_ttl ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "udp_send"></a>
+    <strong>udp_send ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "udp_try_send"></a>
+    <strong>udp_try_send ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "udp_recv_start"></a>
+    <strong>udp_recv_start ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "udp_recv_stop"></a>
+    <strong>udp_recv_stop ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "udp_connect"></a>
+    <strong>udp_connect ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "udp_getpeername"></a>
+    <strong>udp_getpeername ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="fs_event_Functions"></a>fs_event Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "new_fs_event"></a>
+    <strong>new_fs_event ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fs_event_start"></a>
+    <strong>fs_event_start ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fs_event_stop"></a>
+    <strong>fs_event_stop ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fs_event_getpath"></a>
+    <strong>fs_event_getpath ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="fs_poll_Functions"></a>fs_poll Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "new_fs_poll"></a>
+    <strong>new_fs_poll ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fs_poll_start"></a>
+    <strong>fs_poll_start ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fs_poll_stop"></a>
+    <strong>fs_poll_stop ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fs_poll_getpath"></a>
+    <strong>fs_poll_getpath ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="fs_Functions"></a>fs Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "fs_close"></a>
+    <strong>fs_close ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fs_open"></a>
+    <strong>fs_open ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fs_read"></a>
+    <strong>fs_read ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fs_unlink"></a>
+    <strong>fs_unlink ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fs_write"></a>
+    <strong>fs_write ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fs_mkdir"></a>
+    <strong>fs_mkdir ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fs_mkdtemp"></a>
+    <strong>fs_mkdtemp ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fs_mkstemp"></a>
+    <strong>fs_mkstemp ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fs_rmdir"></a>
+    <strong>fs_rmdir ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fs_scandir"></a>
+    <strong>fs_scandir ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fs_scandir_next"></a>
+    <strong>fs_scandir_next ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fs_stat"></a>
+    <strong>fs_stat ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fs_fstat"></a>
+    <strong>fs_fstat ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fs_lstat"></a>
+    <strong>fs_lstat ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fs_rename"></a>
+    <strong>fs_rename ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fs_fsync"></a>
+    <strong>fs_fsync ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fs_fdatasync"></a>
+    <strong>fs_fdatasync ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fs_ftruncate"></a>
+    <strong>fs_ftruncate ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fs_sendfile"></a>
+    <strong>fs_sendfile ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fs_access"></a>
+    <strong>fs_access ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fs_chmod"></a>
+    <strong>fs_chmod ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fs_fchmod"></a>
+    <strong>fs_fchmod ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fs_utime"></a>
+    <strong>fs_utime ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fs_futime"></a>
+    <strong>fs_futime ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fs_lutime"></a>
+    <strong>fs_lutime ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fs_link"></a>
+    <strong>fs_link ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fs_symlink"></a>
+    <strong>fs_symlink ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fs_readlink"></a>
+    <strong>fs_readlink ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fs_realpath"></a>
+    <strong>fs_realpath ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fs_chown"></a>
+    <strong>fs_chown ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fs_fchown"></a>
+    <strong>fs_fchown ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fs_lchown"></a>
+    <strong>fs_lchown ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fs_opendir"></a>
+    <strong>fs_opendir ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fs_readdir"></a>
+    <strong>fs_readdir ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fs_closedir"></a>
+    <strong>fs_closedir ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fs_statfs"></a>
+    <strong>fs_statfs ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="dns_Functions"></a>dns Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "getaddrinfo"></a>
+    <strong>getaddrinfo ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "getnameinfo"></a>
+    <strong>getnameinfo ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="misc_Functions"></a>misc Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "guess_handle"></a>
+    <strong>guess_handle ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "version"></a>
+    <strong>version ()</strong>
+    </dt>
+    <dd>
+    Returns the libuv version packed into a single integer.
+ 8 bits are used for each component, with the patch number stored in the 8 least significant bits
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">integer</span></span>
+        version
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">uv.version() <span class="comment">-- This would be 0x010203 in libuv 1.2.3</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "version_string"></a>
+    <strong>version_string ()</strong>
+    </dt>
+    <dd>
+    Returns the libuv version number as a string.
+ For non-release versions, the version suffix is included.
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+        version
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">uv.version_string() <span class="comment">-- This would be "1.2.3" in libuv 1.2.3</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "get_process_title"></a>
+    <strong>get_process_title ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "set_process_title"></a>
+    <strong>set_process_title ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "resident_set_memory"></a>
+    <strong>resident_set_memory ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "uptime"></a>
+    <strong>uptime ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "getrusage"></a>
+    <strong>getrusage ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "cpu_info"></a>
+    <strong>cpu_info ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "interface_addresses"></a>
+    <strong>interface_addresses ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "loadavg"></a>
+    <strong>loadavg ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "exepath"></a>
+    <strong>exepath ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "cwd"></a>
+    <strong>cwd ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "chdir"></a>
+    <strong>chdir ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "os_tmpdir"></a>
+    <strong>os_tmpdir ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "os_homedir"></a>
+    <strong>os_homedir ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "os_get_passwd"></a>
+    <strong>os_get_passwd ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "get_constrained_memory"></a>
+    <strong>get_constrained_memory ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "get_total_memory"></a>
+    <strong>get_total_memory ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "get_free_memory"></a>
+    <strong>get_free_memory ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "hrtime"></a>
+    <strong>hrtime ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "getpid"></a>
+    <strong>getpid ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "getuid"></a>
+    <strong>getuid ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "getgid"></a>
+    <strong>getgid ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "setuid"></a>
+    <strong>setuid ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "setgid"></a>
+    <strong>setgid ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "print_all_handles"></a>
+    <strong>print_all_handles ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "print_active_handles"></a>
+    <strong>print_active_handles ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "os_getenv"></a>
+    <strong>os_getenv ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "os_setenv"></a>
+    <strong>os_setenv ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "os_unsetenv"></a>
+    <strong>os_unsetenv ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "os_gethostname"></a>
+    <strong>os_gethostname ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "if_indextoname"></a>
+    <strong>if_indextoname ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "if_indextoiid"></a>
+    <strong>if_indextoiid ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "os_getppid"></a>
+    <strong>os_getppid ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "os_getpriority"></a>
+    <strong>os_getpriority ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "os_setpriority"></a>
+    <strong>os_setpriority ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "os_uname"></a>
+    <strong>os_uname ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "gettimeofday"></a>
+    <strong>gettimeofday ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "os_environ"></a>
+    <strong>os_environ ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "sleep"></a>
+    <strong>sleep ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "random"></a>
+    <strong>random ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="thread_Functions"></a>thread Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "new_thread"></a>
+    <strong>new_thread ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "thread_join"></a>
+    <strong>thread_join ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "thread_self"></a>
+    <strong>thread_self ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "thread_equal"></a>
+    <strong>thread_equal ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="util_Functions"></a>util Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "translate_sys_error"></a>
+    <strong>translate_sys_error ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="metrics_Functions"></a>metrics Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "metrics_idle_time"></a>
+    <strong>metrics_idle_time ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
+<i style="float:right;">Last updated 2021-07-13 17:09:46 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

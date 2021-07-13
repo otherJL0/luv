@@ -14,6 +14,7 @@
  *  limitations under the License.
  *
  */
+/// @submodule uv
 #include "private.h"
 
 static uv_stream_t* luv_check_stream(lua_State* L, int index) {
@@ -42,6 +43,7 @@ static void luv_shutdown_cb(uv_shutdown_t* req, int status) {
   req->data = NULL;
 }
 
+/// @function shutdown
 static int luv_shutdown(lua_State* L) {
   luv_ctx_t* ctx = luv_context(L);
   uv_stream_t* handle = luv_check_stream(L, 1);
@@ -65,6 +67,7 @@ static void luv_connection_cb(uv_stream_t* handle, int status) {
   luv_call_callback(L, (luv_handle_t*)handle->data, LUV_CONNECTION, 1);
 }
 
+/// @function listen
 static int luv_listen(lua_State* L) {
   uv_stream_t* handle = luv_check_stream(L, 1);
   int backlog = luaL_checkinteger(L, 2);
@@ -74,6 +77,7 @@ static int luv_listen(lua_State* L) {
   return luv_result(L, ret);
 }
 
+/// @function accept
 static int luv_accept(lua_State* L) {
   uv_stream_t* server = luv_check_stream(L, 1);
   uv_stream_t* client = luv_check_stream(L, 2);
@@ -113,6 +117,7 @@ static void luv_read_cb(uv_stream_t* handle, ssize_t nread, const uv_buf_t* buf)
   luv_call_callback(L, (luv_handle_t*)handle->data, LUV_READ, nargs);
 }
 
+/// @function read_start
 static int luv_read_start(lua_State* L) {
   uv_stream_t* handle = luv_check_stream(L, 1);
   int ret;
@@ -121,6 +126,7 @@ static int luv_read_start(lua_State* L) {
   return luv_result(L, ret);
 }
 
+/// @function read_stop
 static int luv_read_stop(lua_State* L) {
   uv_stream_t* handle = luv_check_stream(L, 1);
   int ret = uv_read_stop(handle);
@@ -136,6 +142,7 @@ static void luv_write_cb(uv_write_t* req, int status) {
   req->data = NULL;
 }
 
+/// @function write
 static int luv_write(lua_State* L) {
   luv_ctx_t* ctx = luv_context(L);
   uv_stream_t* handle = luv_check_stream(L, 1);
@@ -156,6 +163,7 @@ static int luv_write(lua_State* L) {
   return 1;
 }
 
+/// @function write2
 static int luv_write2(lua_State* L) {
   luv_ctx_t* ctx = luv_context(L);
   uv_stream_t* handle = luv_check_stream(L, 1);
@@ -178,6 +186,7 @@ static int luv_write2(lua_State* L) {
   return 1;
 }
 
+/// @function try_write
 static int luv_try_write(lua_State* L) {
   uv_stream_t* handle = luv_check_stream(L, 1);
   int err_or_num_bytes;
@@ -190,6 +199,7 @@ static int luv_try_write(lua_State* L) {
   return 1;
 }
 
+/// @function is_readable
 static int luv_is_readable(lua_State* L) {
   uv_stream_t* handle = luv_check_stream(L, 1);
   lua_pushboolean(L, uv_is_readable(handle));
@@ -202,6 +212,7 @@ static int luv_is_writable(lua_State* L) {
   return 1;
 }
 
+/// @function stream_set_blocking
 static int luv_stream_set_blocking(lua_State* L) {
   uv_stream_t* handle = luv_check_stream(L, 1);
   int blocking, ret;
@@ -212,6 +223,7 @@ static int luv_stream_set_blocking(lua_State* L) {
 }
 
 #if LUV_UV_VERSION_GEQ(1, 19, 0)
+/// @function stream_get_write_queue_size
 static int luv_stream_get_write_queue_size(lua_State* L) {
   uv_stream_t* handle = luv_check_stream(L, 1);
   lua_pushinteger(L, uv_stream_get_write_queue_size(handle));

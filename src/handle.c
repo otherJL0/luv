@@ -14,6 +14,7 @@
  *  limitations under the License.
  *
  */
+/// @submodule uv
 #include "private.h"
 
 static void* luv_newuserdata(lua_State* L, size_t sz) {
@@ -57,6 +58,7 @@ static int luv_handle_tostring(lua_State* L) {
   return 1;
 }
 
+/// @function is_active
 static int luv_is_active(lua_State* L) {
   uv_handle_t* handle = luv_check_handle(L, 1);
   int ret = uv_is_active(handle);
@@ -65,6 +67,7 @@ static int luv_is_active(lua_State* L) {
   return 1;
 }
 
+/// @function is_closing
 static int luv_is_closing(lua_State* L) {
   uv_handle_t* handle = luv_check_handle(L, 1);
   int ret = uv_is_closing(handle);
@@ -82,6 +85,7 @@ static void luv_close_cb(uv_handle_t* handle) {
   luv_unref_handle(L, data);
 }
 
+/// @function close
 static int luv_close(lua_State* L) {
   uv_handle_t* handle = luv_check_handle(L, 1);
   if (uv_is_closing(handle)) {
@@ -130,18 +134,21 @@ static int luv_handle_gc(lua_State* L) {
   return 0;
 }
 
+/// @function ref
 static int luv_ref(lua_State* L) {
   uv_handle_t* handle = luv_check_handle(L, 1);
   uv_ref(handle);
   return 0;
 }
 
+/// @function unref
 static int luv_unref(lua_State* L) {
   uv_handle_t* handle = luv_check_handle(L, 1);
   uv_unref(handle);
   return 0;
 }
 
+/// @function has_ref
 static int luv_has_ref(lua_State* L) {
   uv_handle_t* handle = luv_check_handle(L, 1);
   int ret = uv_has_ref(handle);
@@ -150,6 +157,7 @@ static int luv_has_ref(lua_State* L) {
   return 1;
 }
 
+/// @function send_buffer_size
 static int luv_send_buffer_size(lua_State* L) {
   uv_handle_t* handle = luv_check_handle(L, 1);
   int value = luaL_optinteger(L, 2, 0);
@@ -165,6 +173,7 @@ static int luv_send_buffer_size(lua_State* L) {
   }
 }
 
+/// @function recv_buffer_size
 static int luv_recv_buffer_size(lua_State* L) {
   uv_handle_t* handle = luv_check_handle(L, 1);
   int value = luaL_optinteger(L, 2, 0);
@@ -180,6 +189,7 @@ static int luv_recv_buffer_size(lua_State* L) {
   }
 }
 
+/// @function fileno
 static int luv_fileno(lua_State* L) {
   uv_handle_t* handle = luv_check_handle(L, 1);
   uv_os_fd_t fd;
@@ -190,6 +200,7 @@ static int luv_fileno(lua_State* L) {
 }
 
 #if LUV_UV_VERSION_GEQ(1, 19, 0)
+/// @function handle_get_type
 static int luv_handle_get_type(lua_State* L) {
   uv_handle_t* handle = luv_check_handle(L, 1);
   uv_handle_type type = uv_handle_get_type(handle);

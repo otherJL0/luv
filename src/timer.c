@@ -14,6 +14,7 @@
  *  limitations under the License.
  *
  */
+/// @submodule uv
 #include "private.h"
 
 static uv_timer_t* luv_check_timer(lua_State* L, int index) {
@@ -22,6 +23,7 @@ static uv_timer_t* luv_check_timer(lua_State* L, int index) {
   return handle;
 }
 
+/// @function new_timer
 static int luv_new_timer(lua_State* L) {
   luv_ctx_t* ctx = luv_context(L);
   uv_timer_t* handle = (uv_timer_t*) luv_newuserdata(L, sizeof(*handle));
@@ -40,6 +42,7 @@ static void luv_timer_cb(uv_timer_t* handle) {
   luv_call_callback(L, data, LUV_TIMEOUT, 0);
 }
 
+/// @function timer_start
 static int luv_timer_start(lua_State* L) {
   uv_timer_t* handle = luv_check_timer(L, 1);
   uint64_t timeout;
@@ -52,18 +55,21 @@ static int luv_timer_start(lua_State* L) {
   return luv_result(L, ret);
 }
 
+/// @function timer_stop
 static int luv_timer_stop(lua_State* L) {
   uv_timer_t* handle = luv_check_timer(L, 1);
   int ret = uv_timer_stop(handle);
   return luv_result(L, ret);
 }
 
+/// @function timer_again
 static int luv_timer_again(lua_State* L) {
   uv_timer_t* handle = luv_check_timer(L, 1);
   int ret = uv_timer_again(handle);
   return luv_result(L, ret);
 }
 
+/// @function timer_set_repeat
 static int luv_timer_set_repeat(lua_State* L) {
   uv_timer_t* handle = luv_check_timer(L, 1);
   uint64_t repeat = luaL_checkinteger(L, 2);
@@ -71,6 +77,7 @@ static int luv_timer_set_repeat(lua_State* L) {
   return 0;
 }
 
+/// @function timer_get_repeat
 static int luv_timer_get_repeat(lua_State* L) {
   uv_timer_t* handle = luv_check_timer(L, 1);
   uint64_t repeat = uv_timer_get_repeat(handle);
@@ -79,6 +86,7 @@ static int luv_timer_get_repeat(lua_State* L) {
 }
 
 #if LUV_UV_VERSION_GEQ(1, 40, 0)
+/// @function timer_get_due_in
 static int luv_timer_get_due_in(lua_State* L) {
   uv_timer_t* handle = luv_check_timer(L, 1);
   uint64_t val = uv_timer_get_due_in(handle);

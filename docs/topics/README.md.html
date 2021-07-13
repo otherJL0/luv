@@ -1,0 +1,297 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>Reference</title>
+    <link rel="stylesheet" href="../ldoc.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>Luv</h1>
+
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Luarocks">Luarocks </a></li>
+<li><a href="#Building_From_Source">Building From Source </a></li>
+</ul>
+
+
+<h2>Topics</h2>
+<ul class="">
+  <li><strong>README</strong></li>
+</ul>
+<h2>Modules</h2>
+<ul class="nowrap">
+  <li><a href="../index.html">uv</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+
+<h1>luv</h1>
+
+<p><a href="https://github.com/luvit/luv/actions/workflows/ci.yml"><img src="https://github.com/luvit/luv/actions/workflows/ci.yml/badge.svg" alt="Linux Build Status"/></a>
+<a href="https://ci.appveyor.com/project/racker-buildbot/luv/branch/master"><img src="https://ci.appveyor.com/api/projects/status/uo1qhdcc0vcqsiok/branch/master?svg=true" alt="Windows Build status"/></a>
+<a href="https://lgtm.com/projects/g/luvit/luv/context:cpp"><img src="https://img.shields.io/lgtm/grade/cpp/g/luvit/luv.svg?logo=lgtm&amp;logoWidth=18" alt="Code Quality: Cpp"/></a>
+<a href="https://lgtm.com/projects/g/luvit/luv/alerts"><img src="https://img.shields.io/lgtm/alerts/g/luvit/luv.svg?logo=lgtm&amp;logoWidth=18" alt="Total Alerts"/></a></p>
+
+<p><a href="https://github.com/libuv/libuv">libuv</a> bindings for
+<a href="http://luajit.org/">luajit</a> and <a href="http://www.lua.org/">lua</a>
+<a href="http://www.lua.org/manual/5.1/manual.html">5.1</a>/
+<a href="http://www.lua.org/manual/5.2/manual.html">5.2</a>/
+<a href="http://www.lua.org/manual/5.3/manual.html">5.3</a>/
+<a href="http://www.lua.org/manual/5.4/manual.html">5.4</a>.</p>
+
+<p>This library makes libuv available to lua scripts.  It was made for the <a href="http://luvit.io/">luvit</a> project but should usable from nearly any lua project.</p>
+
+<p>The library can be used by multiple threads at once.  Each thread is assumed to load the library from a different <code>lua_State</code>.  Luv will create a unique <code>uv_loop_t</code> for each state.  You can't share uv handles between states/loops.</p>
+
+<ul>
+    <li><a href="docs.md">Luv docs</a></li>
+    <li><a href="http://docs.libuv.org/">Libuv docs</a></li>
+</ul>
+
+
+<pre>
+<span class="keyword">local</span> uv = <span class="global">require</span>(<span class="string">'luv'</span>)
+
+<span class="comment">-- Create a handle to a uv_timer_t
+</span><span class="keyword">local</span> timer = uv.new_timer()
+
+<span class="comment">-- This will wait 1000ms and then continue inside the callback
+</span>timer:start(<span class="number">1000</span>, <span class="number">0</span>, <span class="keyword">function</span> ()
+  <span class="comment">-- timer here is the value we passed in before from new_timer.
+</span>
+  <span class="global">print</span> (<span class="string">"Awake!"</span>)
+
+  <span class="comment">-- You must always close your uv handles or you'll leak memory
+</span>  <span class="comment">-- We can't depend on the GC since it doesn't know enough about libuv.
+</span>  timer:close()
+<span class="keyword">end</span>)
+
+<span class="global">print</span>(<span class="string">"Sleeping"</span>);
+
+<span class="comment">-- uv.run will block and wait for all events to run.
+</span><span class="comment">-- When there are no longer any active handles, it will return
+</span>uv.run()
+</pre>
+
+
+
+<p>Here is an example of an TCP echo server</p>
+
+<pre>
+<span class="keyword">local</span> uv = <span class="global">require</span>(<span class="string">'luv'</span>)
+
+<span class="keyword">local</span> <span class="keyword">function</span> create_server(host, port, on_connection)
+
+  <span class="keyword">local</span> server = uv.new_tcp()
+  server:bind(host, port)
+
+  server:listen(<span class="number">128</span>, <span class="keyword">function</span>(err)
+    <span class="comment">-- Make sure there was no problem setting up listen
+</span>    <span class="global">assert</span>(<span class="keyword">not</span> err, err)
+
+    <span class="comment">-- Accept the client
+</span>    <span class="keyword">local</span> client = uv.new_tcp()
+    server:accept(client)
+
+    on_connection(client)
+  <span class="keyword">end</span>)
+
+  <span class="keyword">return</span> server
+<span class="keyword">end</span>
+
+<span class="keyword">local</span> server = create_server(<span class="string">"0.0.0.0"</span>, <span class="number">0</span>, <span class="keyword">function</span> (client)
+
+  client:read_start(<span class="keyword">function</span> (err, chunk)
+
+    <span class="comment">-- Crash on errors
+</span>    <span class="global">assert</span>(<span class="keyword">not</span> err, err)
+
+    <span class="keyword">if</span> chunk <span class="keyword">then</span>
+      <span class="comment">-- Echo anything heard
+</span>      client:write(chunk)
+    <span class="keyword">else</span>
+      <span class="comment">-- When the stream ends, close the socket
+</span>      client:close()
+    <span class="keyword">end</span>
+  <span class="keyword">end</span>)
+<span class="keyword">end</span>)
+
+<span class="global">print</span>(<span class="string">"TCP Echo server listening on port "</span> .. server:getsockname().port)
+
+uv.run()
+</pre>
+
+
+<p>More examples can be found in the <a href="examples">examples</a> and <a href="tests">tests</a> folders.</p>
+
+<p><a name="Luarocks"></a></p>
+<h2>Luarocks</h2>
+
+<p>Luv is available on Luarocks <a href="https://luarocks.org/modules/creationix/luv">here</a>. It can be installed via:</p>
+
+<pre><code> luarocks install luv
+</code></pre>
+
+
+<p>Note: To require <code>luv</code> using <code>require &apos;uv&apos;</code> (to maintain compatibility with how luv is required in <a href="https://github.com/luvit/luvi">luvi</a>) create a <code>uv.lua</code> with the contents:</p>
+<pre><code> return require 'luv'
+</code></pre>
+
+
+<p><a name="Building_From_Source"></a></p>
+<h2>Building From Source</h2>
+
+<p>To build, first install your compiler tools.</p>
+
+<h3>Get a Compiler</h3>
+
+<p>On linux this probably means <code>gcc</code> and <code>make</code>.  On Ubuntu, the <code>build-essential</code>
+package is good for this.</p>
+
+<p>On OSX, you probably want XCode which comes with <code>clang</code> and <code>make</code> and friends.</p>
+
+<p>For windows the free Visual Studio Express works.  If you get the 2013 edition,
+make sure to get the <code>Windows Deskop</code> edition.  The <code>Windows</code> version doesn't
+include a working C compiler.  Make sure to run all of setup including getting a
+free license.</p>
+
+<h3>Install CMake</h3>
+
+<p>Now install Cmake.  The version in <code>brew</code> on OSX or most Linux package managers
+is good.  The version on Travis CI is too old and so I use a PPA there.  On
+windows use the installer and make sure to add cmake to your command prompt
+path.</p>
+
+<h3>Install Git</h3>
+
+<p>If you haven't already, install git and make sure it's in your path.  This comes
+with XCode on OSX.  On Linux it's in your package manager.  For windows, use the
+installer at <a href="http://git-scm.com">http://git-scm.com</a>.  Make sure it's available to your windows
+command prompt.</p>
+
+<h3>Clone the Code</h3>
+
+<p>Now open a terminal and clone the code.  For windows I recommend the special
+developer command prompt that came with Visual Studio.</p>
+
+<pre><code> git clone https://github.com/luvit/luv.git --recursive
+ cd luv
+</code></pre>
+
+
+<h3>Build the Code and Test</h3>
+
+<p>On windows I wrote a small batch file that runs the correct cmake commands and
+copies the output files for easy access.</p>
+
+<pre><code> C:\Code\luv&gt; msvcbuild.bat
+ C:\Code\luv&gt; luajit tests\run.lua
+</code></pre>
+
+
+<p>On unix systems, use the Makefile.</p>
+
+<pre><code> ~/Code/luv&gt; make test
+</code></pre>
+
+
+<p>This will build luv as a module library. Module libraries are plugins that are
+not linked into other targets.</p>
+
+<h4>Build with PUC Lua 5.4</h4>
+<p>By default luv is linked with LuaJIT 2.1.0-beta3. If you rather like to link luv
+with PUC Lua 5.4 you can run make with:</p>
+
+<pre><code> ~/Code/luv&gt; WITH_LUA_ENGINE=Lua make
+</code></pre>
+
+
+<h4>Build as static library</h4>
+
+<p>If you want to build luv as a static library run make with:</p>
+
+<pre><code> ~/Code/luv&gt; BUILD_MODULE=OFF BUILD_STATIC_LIBS=ON make
+</code></pre>
+
+
+<p>This will create a static library <code>libluv_a.a</code>.</p>
+
+<h4>Build as shared library</h4>
+
+<p>If you want to build luv as a shared library run make with:</p>
+
+<pre><code> ~/Code/luv&gt; BUILD_MODULE=OFF BUILD_SHARED_LIBS=ON make
+</code></pre>
+
+
+<p>This will create a shared library <code>libluv.so</code>.</p>
+
+<h4>Build with shared libraries</h4>
+
+<p>By default the build system will build luv with the supplied dependencies.
+These are:
+  * libuv
+  * LuaJIT or Lua</p>
+
+<p>However, if your target system has already one or more of these dependencies
+installed you can link <code>luv</code> against them.</p>
+
+<h5>Linking with shared libuv</h5>
+
+<p>The default shared library name for libuv is <code>libuv</code>. To link against it use:</p>
+
+<pre><code> ~/Code/luv&gt; WITH_SHARED_LIBUV=ON make
+</code></pre>
+
+
+<h5>Linking with shared LuaJIT</h5>
+
+<p>The default shared library name for LuaJIT is <code>libluajit-5.1</code>. To link against
+it use:</p>
+
+<pre><code> ~/Code/luv&gt; LUA_BUILD_TYPE=System make
+</code></pre>
+
+
+<h5>Linking with shared Lua 5.x</h5>
+
+<p>The default shared library name for Lua 5.x is <code>liblua5.x</code>. To link against
+it use:</p>
+
+<pre><code> ~/Code/luv&gt; LUA_BUILD_TYPE=System WITH_LUA_ENGINE=Lua make
+</code></pre>
+
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
+<i style="float:right;">Last updated 2021-07-13 17:09:46 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

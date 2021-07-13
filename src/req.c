@@ -14,6 +14,7 @@
  *  limitations under the License.
  *
  */
+/// @submodule uv
 #include "private.h"
 
 static uv_req_t* luv_check_req(lua_State* L, int index) {
@@ -33,7 +34,8 @@ static int luv_req_tostring(lua_State* L) {
   return 1;
 }
 
-// Metamethod to allow storing anything in the userdata's environment
+/// Metamethod to allow storing anything in the userdata's environment
+// @function cancel
 static int luv_cancel(lua_State* L) {
   uv_req_t* req = (uv_req_t*)luv_check_req(L, 1);
   int ret = uv_cancel(req);
@@ -42,6 +44,7 @@ static int luv_cancel(lua_State* L) {
 }
 
 #if LUV_UV_VERSION_GEQ(1, 19, 0)
+/// @function req_get_type
 static int luv_req_get_type(lua_State* L) {
   uv_req_t* req = luv_check_req(L, 1);
   uv_req_type type = uv_req_get_type(req);

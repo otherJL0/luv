@@ -14,6 +14,7 @@
  *  limitations under the License.
  *
  */
+/// @submodule uv
 #include "private.h"
 
 static uv_udp_t* luv_check_udp(lua_State* L, int index) {
@@ -22,6 +23,7 @@ static uv_udp_t* luv_check_udp(lua_State* L, int index) {
   return handle;
 }
 
+/// @function new_udp
 static int luv_new_udp(lua_State* L) {
   luv_ctx_t* ctx = luv_context(L);
   lua_settop(L, 1);
@@ -111,18 +113,21 @@ static int luv_new_udp(lua_State* L) {
   return 1;
 }
 
+/// @function udp_get_send_queue_size
 static int luv_udp_get_send_queue_size(lua_State* L) {
   uv_udp_t* handle = luv_check_udp(L, 1);
   lua_pushinteger(L, handle->send_queue_size);
   return 1;
 }
 
+/// @function udp_get_send_queue_count
 static int luv_udp_get_send_queue_count(lua_State* L) {
   uv_udp_t* handle = luv_check_udp(L, 1);
   lua_pushinteger(L, handle->send_queue_count);
   return 1;
 }
 
+/// @function udp_open
 static int luv_udp_open(lua_State* L) {
   uv_udp_t* handle = luv_check_udp(L, 1);
   uv_os_sock_t sock = luaL_checkinteger(L, 2);
@@ -130,6 +135,7 @@ static int luv_udp_open(lua_State* L) {
   return luv_result(L, ret);
 }
 
+/// @function udp_bind
 static int luv_udp_bind(lua_State* L) {
   uv_udp_t* handle = luv_check_udp(L, 1);
   const char* host = luaL_checkstring(L, 2);
@@ -154,6 +160,7 @@ static int luv_udp_bind(lua_State* L) {
   return luv_result(L, ret);
 }
 
+/// @function udp_getsockname
 static int luv_udp_getsockname(lua_State* L) {
   uv_udp_t* handle = luv_check_udp(L, 1);
   struct sockaddr_storage address;
@@ -169,6 +176,7 @@ static const char *const luv_membership_opts[] = {
   "leave", "join", NULL
 };
 
+/// @function udp_set_membership
 static int luv_udp_set_membership(lua_State* L) {
   uv_udp_t* handle = luv_check_udp(L, 1);
   const char* multicast_addr = luaL_checkstring(L, 2);
@@ -180,6 +188,7 @@ static int luv_udp_set_membership(lua_State* L) {
 }
 
 #if LUV_UV_VERSION_GEQ(1, 32, 0)
+/// @function udp_set_source_membership
 static int luv_udp_set_source_membership(lua_State* L) {
   uv_udp_t* handle = luv_check_udp(L, 1);
   const char* multicast_addr = luaL_checkstring(L, 2);
@@ -192,6 +201,7 @@ static int luv_udp_set_source_membership(lua_State* L) {
 }
 #endif
 
+/// @function udp_set_multicast_loop
 static int luv_udp_set_multicast_loop(lua_State* L) {
   uv_udp_t* handle = luv_check_udp(L, 1);
   int on, ret;
@@ -201,6 +211,7 @@ static int luv_udp_set_multicast_loop(lua_State* L) {
   return luv_result(L, ret);
 }
 
+/// @function udp_set_multicast_ttl
 static int luv_udp_set_multicast_ttl(lua_State* L) {
   uv_udp_t* handle = luv_check_udp(L, 1);
   int ttl, ret;
@@ -209,6 +220,7 @@ static int luv_udp_set_multicast_ttl(lua_State* L) {
   return luv_result(L, ret);
 }
 
+/// @function udp_set_multicast_interface
 static int luv_udp_set_multicast_interface(lua_State* L) {
   uv_udp_t* handle = luv_check_udp(L, 1);
   const char* interface_addr = luaL_checkstring(L, 2);
@@ -216,6 +228,7 @@ static int luv_udp_set_multicast_interface(lua_State* L) {
   return luv_result(L, ret);
 }
 
+/// @function udp_set_broadcast
 static int luv_udp_set_broadcast(lua_State* L) {
   uv_udp_t* handle = luv_check_udp(L, 1);
   int on, ret;
@@ -225,6 +238,7 @@ static int luv_udp_set_broadcast(lua_State* L) {
   return luv_result(L, ret);
 }
 
+/// @function udp_set_ttl
 static int luv_udp_set_ttl(lua_State* L) {
   uv_udp_t* handle = luv_check_udp(L, 1);
   int ttl, ret;
@@ -285,6 +299,7 @@ static struct sockaddr* luv_check_addr(lua_State *L, struct sockaddr_storage* ad
 #endif
 }
 
+/// @function udp_send
 static int luv_udp_send(lua_State* L) {
   uv_udp_t* handle = luv_check_udp(L, 1);
   uv_udp_send_t* req;
@@ -309,6 +324,7 @@ static int luv_udp_send(lua_State* L) {
   return 1;
 }
 
+/// @function udp_try_send
 static int luv_udp_try_send(lua_State* L) {
   uv_udp_t* handle = luv_check_udp(L, 1);
   int err_or_num_bytes;
@@ -410,6 +426,7 @@ static void luv_udp_alloc_cb(uv_handle_t* handle, size_t suggested_size, uv_buf_
 }
 #endif
 
+/// @function udp_recv_start
 static int luv_udp_recv_start(lua_State* L) {
   uv_udp_t* handle = luv_check_udp(L, 1);
   int ret;
@@ -429,6 +446,7 @@ static int luv_udp_recv_start(lua_State* L) {
   return luv_result(L, ret);
 }
 
+/// @function udp_recv_stop
 static int luv_udp_recv_stop(lua_State* L) {
   uv_udp_t* handle = luv_check_udp(L, 1);
   int ret = uv_udp_recv_stop(handle);
@@ -436,6 +454,7 @@ static int luv_udp_recv_stop(lua_State* L) {
 }
 
 #if LUV_UV_VERSION_GEQ(1, 27, 0)
+/// @function udp_connect
 static int luv_udp_connect(lua_State* L) {
   uv_udp_t* handle = luv_check_udp(L, 1);
   struct sockaddr_storage addr;
@@ -444,6 +463,7 @@ static int luv_udp_connect(lua_State* L) {
   return luv_result(L, ret);
 }
 
+/// @function udp_getpeername
 static int luv_udp_getpeername(lua_State* L) {
   uv_udp_t* handle = luv_check_udp(L, 1);
   struct sockaddr_storage address;

@@ -15,11 +15,13 @@
  *
  */
 
+/// @submodule uv
 #include "luv.h"
 #ifdef _WIN32
 #include <process.h>
 #endif
 
+/// @function guess_handle
 static int luv_guess_handle(lua_State* L) {
   uv_file file = luaL_checkinteger(L, 1);
   switch (uv_guess_handle(file)) {
@@ -32,11 +34,25 @@ static int luv_guess_handle(lua_State* L) {
   return 1;
 }
 
+/// @section version_checking
+
+/// Returns the libuv version packed into a single integer.
+// 8 bits are used for each component, with the patch number stored in the 8 least significant bits
+// @function version
+// @within version_checking
+// @treturn integer version
+// @usage uv.version() -- This would be 0x010203 in libuv 1.2.3
 static int luv_version(lua_State* L) {
  lua_pushinteger(L, uv_version());
  return 1;
 }
 
+/// Returns the libuv version number as a string.
+// For non-release versions, the version suffix is included.
+// @function version_string
+// @within version_checking
+// @treturn string version
+// @usage uv.version_string() -- This would be "1.2.3" in libuv 1.2.3
 static int luv_version_string(lua_State* L) {
  lua_pushstring(L, uv_version_string());
  return 1;
@@ -127,6 +143,7 @@ static uv_buf_t* luv_check_bufs_noref(lua_State* L, int index, size_t* count) {
   return bufs;
 }
 
+/// @function get_process_title
 static int luv_get_process_title(lua_State* L) {
   char title[MAX_TITLE_LENGTH];
   int ret = uv_get_process_title(title, MAX_TITLE_LENGTH);
@@ -135,12 +152,14 @@ static int luv_get_process_title(lua_State* L) {
   return 1;
 }
 
+/// @function set_process_title
 static int luv_set_process_title(lua_State* L) {
   const char* title = luaL_checkstring(L, 1);
   int ret = uv_set_process_title(title);
   return luv_result(L, ret);
 }
 
+/// @function resident_set_memory
 static int luv_resident_set_memory(lua_State* L) {
   size_t rss;
   int ret = uv_resident_set_memory(&rss);
@@ -149,6 +168,7 @@ static int luv_resident_set_memory(lua_State* L) {
   return 1;
 }
 
+/// @function uptime
 static int luv_uptime(lua_State* L) {
   double uptime;
   int ret = uv_uptime(&uptime);
@@ -165,6 +185,7 @@ static void luv_push_timeval_table(lua_State* L, const uv_timeval_t* t) {
   lua_setfield(L, -2, "usec");
 }
 
+/// @function getrusage
 static int luv_getrusage(lua_State* L) {
   uv_rusage_t rusage;
   int ret = uv_getrusage(&rusage);
@@ -221,6 +242,7 @@ static int luv_getrusage(lua_State* L) {
   return 1;
 }
 
+/// @function cpu_info
 static int luv_cpu_info(lua_State* L) {
   uv_cpu_info_t* cpu_infos = NULL;
   int count = 0, i;
@@ -257,6 +279,7 @@ static int luv_cpu_info(lua_State* L) {
   return 1;
 }
 
+/// @function interface_addresses
 static int luv_interface_addresses(lua_State* L) {
   uv_interface_address_t* interfaces;
   int count, i;
@@ -306,6 +329,7 @@ static int luv_interface_addresses(lua_State* L) {
   return 1;
 }
 
+/// @function loadavg
 static int luv_loadavg(lua_State* L) {
   double avg[3];
   uv_loadavg(avg);
@@ -315,6 +339,7 @@ static int luv_loadavg(lua_State* L) {
   return 3;
 }
 
+/// @function exepath
 static int luv_exepath(lua_State* L) {
   size_t size = 2*PATH_MAX;
   char exe_path[2*PATH_MAX];
@@ -324,6 +349,7 @@ static int luv_exepath(lua_State* L) {
   return 1;
 }
 
+/// @function cwd
 static int luv_cwd(lua_State* L) {
   size_t size = 2*PATH_MAX;
   char path[2*PATH_MAX];
@@ -333,12 +359,14 @@ static int luv_cwd(lua_State* L) {
   return 1;
 }
 
+/// @function chdir
 static int luv_chdir(lua_State* L) {
   int ret = uv_chdir(luaL_checkstring(L, 1));
   return luv_result(L, ret);
 }
 
 #if LUV_UV_VERSION_GEQ(1, 9, 0)
+/// @function os_tmpdir
 static int luv_os_tmpdir(lua_State* L) {
   size_t size = 2*PATH_MAX;
   char tmpdir[2*PATH_MAX];
@@ -348,6 +376,7 @@ static int luv_os_tmpdir(lua_State* L) {
   return 1;
 }
 
+/// @function os_homedir
 static int luv_os_homedir(lua_State* L) {
   size_t size = 2*PATH_MAX;
   char homedir[2*PATH_MAX];
@@ -357,6 +386,7 @@ static int luv_os_homedir(lua_State* L) {
   return 1;
 }
 
+/// @function os_get_passwd
 static int luv_os_get_passwd(lua_State* L) {
   uv_passwd_t pwd;
   int ret = uv_os_get_passwd(&pwd);
@@ -388,27 +418,32 @@ static int luv_os_get_passwd(lua_State* L) {
 #endif
 
 #if LUV_UV_VERSION_GEQ(1, 29, 0)
+/// @function get_constrained_memory
 static int luv_get_constrained_memory(lua_State* L) {
   lua_pushnumber(L, uv_get_constrained_memory());
   return 1;
 }
 #endif
 
+/// @function get_total_memory
 static int luv_get_total_memory(lua_State* L) {
   lua_pushnumber(L, uv_get_total_memory());
   return 1;
 }
 
+/// @function get_free_memory
 static int luv_get_free_memory(lua_State* L) {
   lua_pushnumber(L, uv_get_free_memory());
   return 1;
 }
 
+/// @function hrtime
 static int luv_hrtime(lua_State* L) {
   lua_pushnumber(L, uv_hrtime());
   return 1;
 }
 
+/// @function getpid
 static int luv_getpid(lua_State* L){
   int pid = getpid();
   lua_pushinteger(L, pid);
@@ -416,18 +451,21 @@ static int luv_getpid(lua_State* L){
 }
 
 #ifndef _WIN32
+/// @function getuid
 static int luv_getuid(lua_State* L){
   int uid = getuid();
   lua_pushinteger(L, uid);
   return 1;
 }
 
+/// @function getgid
 static int luv_getgid(lua_State* L){
   int gid = getgid();
   lua_pushinteger(L, gid);
   return 1;
 }
 
+/// @function setuid
 static int luv_setuid(lua_State* L){
   int uid = luaL_checkinteger(L, 1);
   int r = setuid(uid);
@@ -437,6 +475,7 @@ static int luv_setuid(lua_State* L){
   return 0;
 }
 
+/// @function setgid
 static int luv_setgid(lua_State* L){
   int gid = luaL_checkinteger(L, 1);
   int r = setgid(gid);
@@ -447,12 +486,14 @@ static int luv_setgid(lua_State* L){
 }
 
 #if LUV_UV_VERSION_GEQ(1, 8, 0)
+/// @function print_all_handles
 static int luv_print_all_handles(lua_State* L){
   luv_ctx_t* ctx = luv_context(L);
   uv_print_all_handles(ctx->loop, stderr);
   return 0;
 }
 
+/// @function print_active_handles
 static int luv_print_active_handles(lua_State* L){
   luv_ctx_t* ctx = luv_context(L);
   uv_print_active_handles(ctx->loop, stderr);
@@ -462,6 +503,7 @@ static int luv_print_active_handles(lua_State* L){
 #endif
 
 #if LUV_UV_VERSION_GEQ(1, 12, 0)
+/// @function os_getenv
 static int luv_os_getenv(lua_State* L) {
   const char* name = luaL_checkstring(L, 1);
   size_t size = luaL_optinteger(L, 2, LUAL_BUFFERSIZE);
@@ -476,6 +518,7 @@ static int luv_os_getenv(lua_State* L) {
   return ret;
 }
 
+/// @function os_setenv
 static int luv_os_setenv(lua_State* L) {
   const char* name = luaL_checkstring(L, 1);
   const char* value = luaL_checkstring(L, 2);
@@ -487,6 +530,7 @@ static int luv_os_setenv(lua_State* L) {
   return 1;
 }
 
+/// @function os_unsetenv
 static int luv_os_unsetenv(lua_State* L) {
   const char* name = luaL_checkstring(L, 1);
   int ret = uv_os_unsetenv(name);
@@ -497,6 +541,7 @@ static int luv_os_unsetenv(lua_State* L) {
   return 1;
 }
 
+/// @function os_gethostname
 static int luv_os_gethostname(lua_State* L) {
 #if LUV_UV_VERSION_GEQ(1, 26, 0)
   char hostname[UV_MAXHOSTNAMESIZE];
@@ -516,6 +561,7 @@ static int luv_os_gethostname(lua_State* L) {
 #endif
 
 #if LUV_UV_VERSION_GEQ(1, 16, 0)
+/// @function if_indextoname
 static int luv_if_indextoname(lua_State* L) {
   /* 40 bytes address, 16 bytes device name, plus reserve. */
   char scoped_addr[128];
@@ -532,6 +578,7 @@ static int luv_if_indextoname(lua_State* L) {
   return ret;
 }
 
+/// @function if_indextoiid
 static int luv_if_indextoiid(lua_State* L) {
   char interface_id[UV_IF_NAMESIZE];
   size_t interface_id_len = sizeof(interface_id);
@@ -547,6 +594,7 @@ static int luv_if_indextoiid(lua_State* L) {
   return ret;
 }
 
+/// @function os_getppid
 static int luv_os_getppid(lua_State* L) {
   lua_pushnumber(L, uv_os_getppid());
   return 1;
@@ -561,6 +609,7 @@ static int luv_os_getpid(lua_State* L) {
 #endif
 
 #if LUV_UV_VERSION_GEQ(1, 23, 0)
+/// @function os_getpriority
 static int luv_os_getpriority(lua_State* L) {
   int priority;
   uv_pid_t pid = luaL_checkinteger(L, 1);
@@ -577,6 +626,7 @@ static int luv_os_getpriority(lua_State* L) {
 #endif
 
 #if LUV_UV_VERSION_GEQ(1, 23, 0)
+/// @function os_setpriority
 static int luv_os_setpriority(lua_State* L) {
   uv_pid_t pid = luaL_checkinteger(L, 1);
   int priority= luaL_checkinteger(L, 2);
@@ -592,6 +642,7 @@ static int luv_os_setpriority(lua_State* L) {
 #endif
 
 #if LUV_UV_VERSION_GEQ(1, 25, 0)
+/// @function os_uname
 static int luv_os_uname(lua_State* L) {
   uv_utsname_t uname;
 
@@ -615,6 +666,7 @@ static int luv_os_uname(lua_State* L) {
 #endif
 
 #if LUV_UV_VERSION_GEQ(1, 28, 0)
+/// @function gettimeofday
 static int luv_gettimeofday(lua_State* L) {
   uv_timeval64_t tv = { 0 };
 
@@ -636,6 +688,7 @@ static int luv_gettimeofday(lua_State* L) {
 #endif
 
 #if LUV_UV_VERSION_GEQ(1, 31, 0)
+/// @function os_environ
 static int luv_os_environ(lua_State* L) {
   int i, ret, envcount;
   uv_env_item_t* envitems;
@@ -654,6 +707,7 @@ static int luv_os_environ(lua_State* L) {
 }
 #endif
 
+/// @function sleep
 static int luv_sleep(lua_State* L) {
   unsigned int msec = luaL_checkinteger(L, 1);
 #if LUV_UV_VERSION_GEQ(1, 34, 0)
@@ -689,6 +743,7 @@ static void luv_random_cb(uv_random_t* req, int status, void* buf, size_t buflen
   req->data = NULL;
 }
 
+/// @function random
 static int luv_random(lua_State* L) {
   luv_ctx_t* ctx = luv_context(L);
   size_t buflen = (size_t)luaL_checkinteger(L, 1);
