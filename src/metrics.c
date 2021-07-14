@@ -15,7 +15,7 @@
  *
  */
 
-/// @submodule uv
+/// @module uv
 #include "luv.h"
 #include "util.h"
 

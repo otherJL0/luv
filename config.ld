@@ -34,5 +34,5 @@ dir = 'docs'
 readme = 'README.md'
 format = 'markdown'
 boilerplate = true
-all = true
-pretty = 'lxsh'
+-- all = true
+-- pretty = 'lxsh'

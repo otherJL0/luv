@@ -15,7 +15,7 @@
  *
  */
 
-/// @submodule uv
+/// @module uv
 #include "private.h"
 #ifndef WIN32
 #include <netdb.h>

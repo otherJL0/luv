@@ -14,8 +14,20 @@
  *  limitations under the License.
  *
  */
-/// @submodule uv
+/// @module uv
 #include "private.h"
+
+/*** Check handle
+Check handles will run the given callback once per loop iteration, right after
+polling for I/O.
+
+@type check
+@usage
+local check = uv.new_check()
+check:start(function()
+  print("After I/O polling")
+end)
+*/
 
 static uv_check_t* luv_check_check(lua_State* L, int index) {
   uv_check_t* handle = (uv_check_t*)luv_checkudata(L, index, "uv_check");

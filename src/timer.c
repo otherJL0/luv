@@ -14,7 +14,7 @@
  *  limitations under the License.
  *
  */
-/// @submodule uv
+/// @module uv
 #include "private.h"
 
 static uv_timer_t* luv_check_timer(lua_State* L, int index) {
@@ -22,6 +22,12 @@ static uv_timer_t* luv_check_timer(lua_State* L, int index) {
   luaL_argcheck(L, handle->type == UV_TIMER && handle->data, index, "Expected uv_timer_t");
   return handle;
 }
+
+/***
+Timer handle.
+Timer handles are used to schedule callbacks to be called in the future.
+@type timer
+*/
 
 /// @function new_timer
 static int luv_new_timer(lua_State* L) {

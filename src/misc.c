@@ -15,7 +15,7 @@
  *
  */
 
-/// @submodule uv
+/// @module uv
 #include "luv.h"
 #ifdef _WIN32
 #include <process.h>
