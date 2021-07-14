@@ -15,7 +15,7 @@
  *
  */
 
-/// @submodule uv
+/// @module uv
 #include "private.h"
 
 static uv_fs_event_t* luv_check_fs_event(lua_State* L, int index) {

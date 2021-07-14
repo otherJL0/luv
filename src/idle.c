@@ -14,8 +14,26 @@
  *  limitations under the License.
  *
  */
-/// @submodule uv
+/// @module uv
 #include "private.h"
+
+/*** Idle handle
+Idle handles will run the given callback once per loop iteration, right before
+the [`uv_prepare_t`][] handles.
+
+Note: The notable difference with prepare handles is that when there are
+active idle handles, the loop will perform a zero timeout poll instead of
+blocking for I/O.
+
+Warning: Despite the name, idle handles will get their callbacks called on
+every loop iteration, not when the loop is actually "idle".
+@type idle
+@usage
+local idle = uv.new_idle()
+idle:start(function()
+  print("Before I/O polling, no blocking")
+end)
+*/
 
 static uv_idle_t* luv_check_idle(lua_State* L, int index) {
   uv_idle_t* handle = (uv_idle_t*)luv_checkudata(L, index, "uv_idle");

@@ -14,8 +14,20 @@
  *  limitations under the License.
  *
  */
-/// @submodule uv
+/// @module uv
 #include "private.h"
+
+/***
+Prepare handle.
+Prepare handles will run the given callback once per loop iteration, right
+before polling for I/O.
+@type prepare
+@usage
+local prepare = uv.new_prepare()
+prepare:start(function()
+  print("Before I/O polling")
+end)
+*/
 
 static uv_prepare_t* luv_check_prepare(lua_State* L, int index) {
   uv_prepare_t* handle = (uv_prepare_t*)luv_checkudata(L, index, "uv_prepare");

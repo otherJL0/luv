@@ -14,7 +14,7 @@
  *  limitations under the License.
  *
  */
-/// @submodule uv
+/// @module uv
 #include "private.h"
 
 static uv_signal_t* luv_check_signal(lua_State* L, int index) {

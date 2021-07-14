@@ -14,7 +14,7 @@
  *  limitations under the License.
  *
  */
-/// @submodule uv
+/// @module uv
 #include "private.h"
 
 static uv_tty_t* luv_check_tty(lua_State* L, int index) {

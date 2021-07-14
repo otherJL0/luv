@@ -14,7 +14,7 @@
  *  limitations under the License.
  *
  */
-/// @submodule uv
+/// @module uv
 #include "private.h"
 
 static uv_req_t* luv_check_req(lua_State* L, int index) {
@@ -34,8 +34,21 @@ static int luv_req_tostring(lua_State* L) {
   return 1;
 }
 
-/// Metamethod to allow storing anything in the userdata's environment
-// @function cancel
+/***
+Base request.
+The base type for all libuv request types.
+@type req
+*/
+
+/***
+Cancel a pending request. Fails if the request is executing or has finished
+executing. Only cancellation of `uv_fs_t`, `uv_getaddrinfo_t`,
+`uv_getnameinfo_t` and `uv_work_t` requests is currently supported.
+@function cancel
+@return 0
+@error
+*/
+// Metamethod to allow storing anything in the userdata's environment
 static int luv_cancel(lua_State* L) {
   uv_req_t* req = (uv_req_t*)luv_check_req(L, 1);
   int ret = uv_cancel(req);
@@ -44,7 +57,13 @@ static int luv_cancel(lua_State* L) {
 }
 
 #if LUV_UV_VERSION_GEQ(1, 19, 0)
-/// @function req_get_type
+/***
+Returns the name of the struct for a given request (e.g. `"fs"` for `uv_fs_t`)
+and the libuv enum integer for the request's type (`uv_req_type`).
+@function get_type
+@treturn string
+@treturn integer
+*/
 static int luv_req_get_type(lua_State* L) {
   uv_req_t* req = luv_check_req(L, 1);
   uv_req_type type = uv_req_get_type(req);

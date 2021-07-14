@@ -14,7 +14,7 @@
  *  limitations under the License.
  *
  */
-/// @submodule uv
+/// @module uv
 #include "private.h"
 
 static void* luv_newuserdata(lua_State* L, size_t sz) {
@@ -58,7 +58,31 @@ static int luv_handle_tostring(lua_State* L) {
   return 1;
 }
 
-/// @function is_active
+/***
+Base handle.
+`uv_handle_t` is the base type for all libuv handle types. All API functions
+defined here work with any handle type.
+@type handle
+*/
+
+/***
+Returns `true` if the handle is active, `false` if it's inactive. What "active”
+means depends on the type of handle:
+
+  - A [`uv_async_t`][] handle is always active and cannot be deactivated, except
+  by closing it with `uv.close()`.
+
+  - A [`uv_pipe_t`][], [`uv_tcp_t`][], [`uv_udp_t`][], etc. handle - basically
+  any handle that deals with I/O - is active when it is doing something that
+  involves I/O, like reading, writing, connecting, accepting new connections,
+  etc.
+
+  - A [`uv_check_t`][], [`uv_idle_t`][], [`uv_timer_t`][], etc. handle is active
+  when it has been started with a call to `uv.check_start()`, `uv.idle_start()`,
+  `uv.timer_start()` etc. until it has been stopped with a call to its
+  respective stop function.
+@function is_active
+*/
 static int luv_is_active(lua_State* L) {
   uv_handle_t* handle = luv_check_handle(L, 1);
   int ret = uv_is_active(handle);
