@@ -708,7 +708,7 @@ closing handles in the loop; otherwise, <code>false</code>.</td>
 </td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#handle:handle_get_type">handle:handle_get_type ()</a></td>
+	<td class="name" nowrap><a href="#handle:handle_get_type">handle:get_type ()</a></td>
 	<td class="summary">
 
 </td>
@@ -723,37 +723,37 @@ closing handles in the loop; otherwise, <code>false</code>.</td>
 </td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#timer:timer_start">timer:timer_start ()</a></td>
+	<td class="name" nowrap><a href="#timer:timer_start">timer:start ()</a></td>
 	<td class="summary">
 
 </td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#timer:timer_stop">timer:timer_stop ()</a></td>
+	<td class="name" nowrap><a href="#timer:timer_stop">timer:stop ()</a></td>
 	<td class="summary">
 
 </td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#timer:timer_again">timer:timer_again ()</a></td>
+	<td class="name" nowrap><a href="#timer:timer_again">timer:again ()</a></td>
 	<td class="summary">
 
 </td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#timer:timer_set_repeat">timer:timer_set_repeat ()</a></td>
+	<td class="name" nowrap><a href="#timer:timer_set_repeat">timer:set_repeat ()</a></td>
 	<td class="summary">
 
 </td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#timer:timer_get_repeat">timer:timer_get_repeat ()</a></td>
+	<td class="name" nowrap><a href="#timer:timer_get_repeat">timer:get_repeat ()</a></td>
 	<td class="summary">
 
 </td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#timer:timer_get_due_in">timer:timer_get_due_in ()</a></td>
+	<td class="name" nowrap><a href="#timer:timer_get_due_in">timer:get_due_in ()</a></td>
 	<td class="summary">
 
 </td>
@@ -768,13 +768,13 @@ closing handles in the loop; otherwise, <code>false</code>.</td>
 </td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#prepare:prepare_start">prepare:prepare_start ()</a></td>
+	<td class="name" nowrap><a href="#prepare:prepare_start">prepare:start ()</a></td>
 	<td class="summary">
 
 </td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#prepare:prepare_stop">prepare:prepare_stop ()</a></td>
+	<td class="name" nowrap><a href="#prepare:prepare_stop">prepare:stop ()</a></td>
 	<td class="summary">
 
 </td>
@@ -789,13 +789,13 @@ closing handles in the loop; otherwise, <code>false</code>.</td>
 </td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#check:check_start">check:check_start ()</a></td>
+	<td class="name" nowrap><a href="#check:check_start">check:start ()</a></td>
 	<td class="summary">
 
 </td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#check:check_stop">check:check_stop ()</a></td>
+	<td class="name" nowrap><a href="#check:check_stop">check:stop ()</a></td>
 	<td class="summary">
 
 </td>
@@ -810,13 +810,13 @@ closing handles in the loop; otherwise, <code>false</code>.</td>
 </td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#idle:idle_start">idle:idle_start ()</a></td>
+	<td class="name" nowrap><a href="#idle:idle_start">idle:start ()</a></td>
 	<td class="summary">
 
 </td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#idle:idle_stop">idle:idle_stop ()</a></td>
+	<td class="name" nowrap><a href="#idle:idle_stop">idle:stop ()</a></td>
 	<td class="summary">
 
 </td>
@@ -3334,8 +3334,8 @@ means depends on the type of handle:</p>
 
 </dd>
     <dt>
-    <a name = "handle:handle_get_type"></a>
-    <strong>handle:handle_get_type ()</strong>
+    <a name = "handle:get_type"></a>
+    <strong>handle:get_type ()</strong>
     </dt>
     <dd>
 
@@ -3374,8 +3374,8 @@ Timer handles are used to schedule callbacks to be called in the future.
 
 </dd>
     <dt>
-    <a name = "timer:timer_start"></a>
-    <strong>timer:timer_start ()</strong>
+    <a name = "timer:start"></a>
+    <strong>timer:start ()</strong>
     </dt>
     <dd>
 
@@ -3390,8 +3390,8 @@ Timer handles are used to schedule callbacks to be called in the future.
 
 </dd>
     <dt>
-    <a name = "timer:timer_stop"></a>
-    <strong>timer:timer_stop ()</strong>
+    <a name = "timer:stop"></a>
+    <strong>timer:stop ()</strong>
     </dt>
     <dd>
 
@@ -3406,8 +3406,8 @@ Timer handles are used to schedule callbacks to be called in the future.
 
 </dd>
     <dt>
-    <a name = "timer:timer_again"></a>
-    <strong>timer:timer_again ()</strong>
+    <a name = "timer:again"></a>
+    <strong>timer:again ()</strong>
     </dt>
     <dd>
 
@@ -3422,8 +3422,8 @@ Timer handles are used to schedule callbacks to be called in the future.
 
 </dd>
     <dt>
-    <a name = "timer:timer_set_repeat"></a>
-    <strong>timer:timer_set_repeat ()</strong>
+    <a name = "timer:set_repeat"></a>
+    <strong>timer:set_repeat ()</strong>
     </dt>
     <dd>
 
@@ -3438,8 +3438,8 @@ Timer handles are used to schedule callbacks to be called in the future.
 
 </dd>
     <dt>
-    <a name = "timer:timer_get_repeat"></a>
-    <strong>timer:timer_get_repeat ()</strong>
+    <a name = "timer:get_repeat"></a>
+    <strong>timer:get_repeat ()</strong>
     </dt>
     <dd>
 
@@ -3454,8 +3454,8 @@ Timer handles are used to schedule callbacks to be called in the future.
 
 </dd>
     <dt>
-    <a name = "timer:timer_get_due_in"></a>
-    <strong>timer:timer_get_due_in ()</strong>
+    <a name = "timer:get_due_in"></a>
+    <strong>timer:get_due_in ()</strong>
     </dt>
     <dd>
 
@@ -3500,8 +3500,8 @@ prepare:start(<span class="keyword">function</span>()
 
 </dd>
     <dt>
-    <a name = "prepare:prepare_start"></a>
-    <strong>prepare:prepare_start ()</strong>
+    <a name = "prepare:start"></a>
+    <strong>prepare:start ()</strong>
     </dt>
     <dd>
 
@@ -3516,8 +3516,8 @@ prepare:start(<span class="keyword">function</span>()
 
 </dd>
     <dt>
-    <a name = "prepare:prepare_stop"></a>
-    <strong>prepare:prepare_stop ()</strong>
+    <a name = "prepare:stop"></a>
+    <strong>prepare:stop ()</strong>
     </dt>
     <dd>
 
@@ -3562,8 +3562,8 @@ check:start(<span class="keyword">function</span>()
 
 </dd>
     <dt>
-    <a name = "check:check_start"></a>
-    <strong>check:check_start ()</strong>
+    <a name = "check:start"></a>
+    <strong>check:start ()</strong>
     </dt>
     <dd>
 
@@ -3578,8 +3578,8 @@ check:start(<span class="keyword">function</span>()
 
 </dd>
     <dt>
-    <a name = "check:check_stop"></a>
-    <strong>check:check_stop ()</strong>
+    <a name = "check:stop"></a>
+    <strong>check:stop ()</strong>
     </dt>
     <dd>
 
@@ -3631,8 +3631,8 @@ idle:start(<span class="keyword">function</span>()
 
 </dd>
     <dt>
-    <a name = "idle:idle_start"></a>
-    <strong>idle:idle_start ()</strong>
+    <a name = "idle:start"></a>
+    <strong>idle:start ()</strong>
     </dt>
     <dd>
 
@@ -3647,8 +3647,8 @@ idle:start(<span class="keyword">function</span>()
 
 </dd>
     <dt>
-    <a name = "idle:idle_stop"></a>
-    <strong>idle:idle_stop ()</strong>
+    <a name = "idle:stop"></a>
+    <strong>idle:stop ()</strong>
     </dt>
     <dd>
 
@@ -4934,7 +4934,7 @@ idle:start(<span class="keyword">function</span>()
 </div> <!-- id="main" -->
 <div id="about">
 <i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
-<i style="float:right;">Last updated 2021-07-14 11:07:30 </i>
+<i style="float:right;">Last updated 2021-07-14 12:55:33 </i>
 </div> <!-- id="about" -->
 </div> <!-- id="container" -->
 </body>

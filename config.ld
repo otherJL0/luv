@@ -17,8 +17,9 @@ boilerplate = true
 style = '!fixed'
 custom_display_name_handler = function(item, default_handler)
     if item.type == 'function' then
-        if string.find(item.kind, 'class') then
-            return item.name .. '[class]'
+        if item.kind:find('class') then
+            item.method = item.name:gsub("([^:]+):%1_", "%1:")
+            item.name = item.method
         end
     end
     return default_handler(item)
