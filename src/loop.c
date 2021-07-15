@@ -17,7 +17,7 @@
 /// @module uv
 #include "private.h"
 
-/***
+/*** 
 Event loop.
 The event loop is the central part of libuv's functionality. It takes care of
 polling for I/O and scheduling callbacks to be run based on different sources of
@@ -27,7 +27,7 @@ In luv, there is an implicit uv loop for every Lua state that loads the library.
 You can use this library in an multi-threaded environment as long as each thread
 has it's own Lua state with its corresponding own uv loop. This loop is not
 directly exposed to users in the Lua module.
-@section uv_loop
+@section loop
 */
 
 /***

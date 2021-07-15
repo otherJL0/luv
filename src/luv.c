@@ -14,8 +14,15 @@
  *  limitations under the License.
  *
  */
-/// luv library
-// @module uv
+/*** luv library
+The [luv][] project provides access to the multi-platform support library
+[libuv][] in Lua code. It was primarily developed for the [luvit][] project as
+the built-in `uv` module, but can be used in other Lua environments.
+
+More information about the core libuv library can be found at the original
+[libuv documentation page][].
+@module uv
+*/
 #include <lua.h>
 #if (LUA_VERSION_NUM < 503)
 #include "compat-5.3.h"

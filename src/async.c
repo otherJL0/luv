@@ -17,6 +17,21 @@
 /// @module uv
 #include "private.h"
 
+/*** 
+Async handle
+Async handles allow the user to "wakeup" the event loop and get a callback
+called from another thread.
+@type async
+@usage
+local async
+async = uv.new_async(function()
+  print("async operation ran")
+  async:close()
+end)
+
+async:send()
+*/
+
 static uv_async_t* luv_check_async(lua_State* L, int index) {
   uv_async_t* handle = (uv_async_t*)luv_checkudata(L, index, "uv_async");
   luaL_argcheck(L, handle->type == UV_ASYNC && handle->data, index, "Expected uv_async_t");

@@ -23,6 +23,10 @@
 #include <sys/types.h>
 #endif
 
+/*** DNS utility functions
+@section dns
+*/
+
 static void luv_pushaddrinfo(lua_State* L, struct addrinfo* res) {
   char ip[INET6_ADDRSTRLEN];
   int port, i = 0;

@@ -17,6 +17,12 @@
 /// @module uv
 #include "private.h"
 
+
+/*** UDP handle
+UDP handles encapsulate UDP communication for both clients and servers.
+@type udp
+*/
+
 static uv_udp_t* luv_check_udp(lua_State* L, int index) {
   uv_udp_t* handle = (uv_udp_t*)luv_checkudata(L, index, "uv_udp");
   luaL_argcheck(L, handle->type == UV_UDP && handle->data, index, "Expected uv_udp_t");

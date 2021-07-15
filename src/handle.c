@@ -16,6 +16,11 @@
  */
 /// @module uv
 #include "private.h"
+/*** Base handle
+`uv_handle_t` is the base type for all libuv handle types. All API functions
+defined here work with any handle type.
+@type handle
+*/
 
 static void* luv_newuserdata(lua_State* L, size_t sz) {
   void* handle = malloc(sz);
@@ -58,12 +63,6 @@ static int luv_handle_tostring(lua_State* L) {
   return 1;
 }
 
-/***
-Base handle.
-`uv_handle_t` is the base type for all libuv handle types. All API functions
-defined here work with any handle type.
-@type handle
-*/
 
 /***
 Returns `true` if the handle is active, `false` if it's inactive. What "active”

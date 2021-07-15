@@ -17,6 +17,10 @@
 /// @module uv
 #include "private.h"
 
+/*** Thread handle
+@type thread
+*/
+
 typedef struct {
   uv_thread_t handle;
   char* code;

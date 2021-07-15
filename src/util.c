@@ -95,6 +95,7 @@ static int luv_arg_type_error(lua_State* L, int index, const char* fmt) {
 
 #if LUV_UV_VERSION_GEQ(1, 10, 0)
 /// @function translate_sys_error
+// @within Miscellaneous
 static int luv_translate_sys_error(lua_State* L) {
   int status = luaL_checkinteger(L, 1);
   status = uv_translate_sys_error(status);

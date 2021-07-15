@@ -17,6 +17,22 @@
 /// @module uv
 #include "private.h"
 
+/*** Pipe handle
+Pipe handles provide an abstraction over local domain sockets on Unix and named pipes on Windows.
+@type pipe
+@usage
+local pipe = uv.new_pipe(false)
+
+pipe:bind('/tmp/sock.test')
+
+pipe:listen(128, function()
+  local client = uv.new_pipe(false)
+  pipe:accept(client)
+  client:write("hello!\n")
+  client:close()
+end)
+*/
+
 static uv_pipe_t* luv_check_pipe(lua_State* L, int index) {
   uv_pipe_t* handle = (uv_pipe_t*)luv_checkudata(L, index, "uv_pipe");
   luaL_argcheck(L, handle->type == UV_NAMED_PIPE && handle->data, index, "Expected uv_pipe_t");

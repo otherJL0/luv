@@ -18,6 +18,10 @@
 #include "private.h"
 #include <math.h>
 
+/*** Process handle
+@type process
+*/
+
 /// @function disable_stdio_inheritance
 static int luv_disable_stdio_inheritance(lua_State* L) {
   (void)L;

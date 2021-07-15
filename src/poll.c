@@ -17,6 +17,35 @@
 /// @module uv
 #include "private.h"
 
+/*** Poll handle
+Poll handles are used to watch file descriptors for readability and writability,
+similar to the purpose of [poll(2)](http://linux.die.net/man/2/poll).
+
+The purpose of poll handles is to enable integrating external libraries that
+rely on the event loop to signal it about the socket status changes, like c-ares
+or libssh2. Using `uv_poll_t` for any other purpose is not recommended;
+`uv_tcp_t`, `uv_udp_t`, etc. provide an implementation that is faster and more
+scalable than what can be achieved with `uv_poll_t`, especially on Windows.
+
+It is possible that poll handles occasionally signal that a file descriptor is
+readable or writable even when it isn't. The user should therefore always be
+prepared to handle EAGAIN or equivalent when it attempts to read from or write
+to the fd.
+
+It is not okay to have multiple active poll handles for the same socket, this
+can cause libuv to busyloop or otherwise malfunction.
+
+The user should not close a file descriptor while it is being polled by an
+active poll handle. This can cause the handle to report an error, but it might
+also start polling another socket. However the fd can be safely closed
+immediately after a call to `uv.poll_stop()` or `uv.close()`.
+
+**Note**: On windows only sockets can be polled with poll handles. On Unix any
+file descriptor that would be accepted by poll(2) can be used.
+
+@type poll
+*/
+
 static uv_poll_t* luv_check_poll(lua_State* L, int index) {
   uv_poll_t* handle = (uv_poll_t*)luv_checkudata(L, index, "uv_poll");
   luaL_argcheck(L, handle->type == UV_POLL && handle->data, index, "Expected uv_poll_t");

@@ -17,6 +17,10 @@
 /// @module uv
 #include "private.h"
 
+/*** Stream handle
+@type stream
+*/
+
 static uv_stream_t* luv_check_stream(lua_State* L, int index) {
   int isStream;
   void *udata;

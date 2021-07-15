@@ -97,7 +97,7 @@ are relevant to behavior seen in the Lua module.
   - [`uv_process_t`][] — Process handle
   - [`uv_stream_t`][] — Stream handle
     - [`uv_tcp_t`][] — TCP handle
-    - [`uv_pipe_t`][] — Pipe handle
+    - [`uv_pipe_t`][] — Pipe [handle](handle)
     - [`uv_tty_t`][] — TTY handle
   - [`uv_udp_t`][] — UDP handle
   - [`uv_fs_event_t`][] — FS Event handle
@@ -3080,7 +3080,7 @@ called in the main loop thread.
 
 [DNS utility functions]: #dns-utility-functions
 
-### `uv.getaddrinfo(host, service, [hints, [callback]])`
+### `[uv getaddrinfo](uv.getaddrinfo)(host, service, [hints, [callback]])`
 
 **Parameters:**
 - `host`: `string` or `nil`

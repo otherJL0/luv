@@ -18,6 +18,13 @@
 /// @module uv
 #include "private.h"
 
+/*** FS Event handle
+FS Event handles allow the user to monitor a given path for changes, for
+example, if the file was renamed or there was a generic change in it. This
+handle uses the best backend for the job on each platform.
+@type fs_event
+*/
+
 static uv_fs_event_t* luv_check_fs_event(lua_State* L, int index) {
   uv_fs_event_t* handle = (uv_fs_event_t*)luv_checkudata(L, index, "uv_fs_event");
   luaL_argcheck(L, handle->type == UV_FS_EVENT && handle->data, index, "Expected uv_fs_event_t");

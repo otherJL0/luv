@@ -19,6 +19,8 @@
 #include "luv.h"
 #include "util.h"
 
+/// @section Metrics operations
+
 #if LUV_UV_VERSION_GEQ(1, 39, 0)
 /// @function metrics_idle_time
 static int luv_metrics_idle_time(lua_State* L) {

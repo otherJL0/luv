@@ -21,6 +21,8 @@
 #include <process.h>
 #endif
 
+/// @section Miscellaneous
+
 /// @function guess_handle
 static int luv_guess_handle(lua_State* L) {
   uv_file file = luaL_checkinteger(L, 1);

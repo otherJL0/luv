@@ -1,7 +1,8 @@
 project = 'Luv'
 description = 'Bare libuv bindings for lua'
+not_luadoc = true
 merge = true
-add_language_extension('lc', 'c')
+-- file = {'src/'}
 file = {
     'src/luv.c', 'src/loop.c', 'src/req.c', 'src/handle.c', 'src/timer.c',
     'src/prepare.c', 'src/check.c', 'src/idle.c', 'src/async.c', 'src/poll.c',
@@ -11,15 +12,21 @@ file = {
     'src/metrics.c'
 }
 dir = 'docs'
-readme = 'README.md'
+-- readme = 'README.md'
 format = 'markdown'
 boilerplate = true
 style = '!fixed'
+-- no_summary = true
+
+add_language_extension('lc', 'c')
+add_section('loop', 'loop', 'loop')
 custom_display_name_handler = function(item, default_handler)
     if item.type == 'function' then
         if item.kind:find('class') then
             item.method = item.name:gsub("([^:]+):%1_", "%1:")
             item.name = item.method
+        else
+            item.display_name = 'uv.' .. item.name
         end
     end
     return default_handler(item)

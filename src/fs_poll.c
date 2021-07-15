@@ -18,6 +18,13 @@
 /// @module uv
 #include "luv.h"
 
+/*** FS Poll handle
+FS Poll handles allow the user to monitor a given path for changes. Unlike
+`uv_fs_event_t`, fs poll handles use `stat` to detect when a file has changed so
+they can work on file systems where fs event handles can't.
+@type fs_poll
+*/
+
 static uv_fs_poll_t* luv_check_fs_poll(lua_State* L, int index) {
   uv_fs_poll_t* handle = (uv_fs_poll_t*)luv_checkudata(L, index, "uv_fs_poll");
   luaL_argcheck(L, handle->type == UV_FS_POLL && handle->data, index, "Expected uv_fs_poll_t");
