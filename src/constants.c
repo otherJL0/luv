@@ -15,8 +15,15 @@
  *
  */
 
+/// @module uv
 #include "luv.h"
 
+/*** 
+Constants
+@section constant
+*/
+
+/// @table constants
 static int luv_constants(lua_State* L) {
   lua_newtable(L);
 
